@@ -28,7 +28,7 @@ const Registration = () => {
                         <p>• Multiple Programming Languages</p>
                         <p>• Real-time Leaderboard</p>
                     </div>
-                    <Button className="shadow-none hover:scale-105 ease-in-out duration-200">Register for Codewar</Button>
+                    <Button className="shadow-none hover:scale-105 ease-in-out duration-200" onClick={()=> navigate('/codewar')}>Register for Codewar</Button>
                 </div>
                 <div className='shadow-[0_0_3px] hover:shadow-[0_0_30px] hover:shadow-teal-600 group hover:scale-105 transition-all ease-in-out duration-300 rounded-lg p-5 space-y-3 flex flex-col items-center max-w-90'>
                     <Settings className=' bg-teal-600 h-12 rounded-lg w-12 p-2' />
