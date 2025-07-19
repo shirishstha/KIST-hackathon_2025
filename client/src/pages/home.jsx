@@ -75,7 +75,7 @@ const HomePage = () => {
                         <Button className="w-34"  onClick={()=> navigate('/registration')}>Let's Go</Button>
                     </div>
                     <div className='flex justify-between w-full p-20 flex-wrap space-y-8'>
-                        <div className='shadow-[0_0_30px] hover:shadow-green-600 rounded-lg p-5 space-y-1'>
+                        <div className='shadow-[0_0_30px] hover:shadow-green-600 rounded-lg p-5 space-y-1  '>
                             <Code className=' bg-green-500 h-8 rounded-lg w-8 p-2'/>
                             <h1 className='text-xl font-bold'>Code War</h1>
                             <p className='text-gray-400 max-w-80'>

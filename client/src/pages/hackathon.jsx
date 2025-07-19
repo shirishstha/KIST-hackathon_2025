@@ -13,7 +13,7 @@ import {
 } from "@/components/ui/dropdown-menu"
 import toast from 'react-hot-toast'
 
-const Codewar = () => {
+const Hackathon = () => {
     const navigate = useNavigate();
     const [name, setName] = useState('');
     const [semester, setSemester] = useState('');
@@ -63,7 +63,7 @@ const Codewar = () => {
             <div className=''>
                 <div className='flex flex-col items-center space-y-5'>
                     <Code className='h-18 w-18 bg-green-500 p-4 rounded-full text-black' />
-                    <h1 className=' text-3xl gradientEffect'>Code War</h1>
+                    <h1 className=' text-3xl gradientEffect'>Hackathon</h1>
                     <p className='text-gray-300 font-medium'>Individual Programming Competetion</p>
                 </div>
 
@@ -172,7 +172,7 @@ const Codewar = () => {
                     </div>
                     <div>
                         <div className='max-w-[400px] p-5 w-80 md:w-100 lg:w-140 shadow-[0_0_5px] m-5 rounded-lg space-y-2'>
-                            <h1 className='text-2xl font-medium gradientEffect '>About Code War</h1>
+                            <h1 className='text-2xl font-medium gradientEffect '>About Hackathon</h1>
                             <div className='grid gap-2 text-gray-400'>
                                 <p>
                                     Code War is an intense individual programming competition designed to test your coding skills,
@@ -186,11 +186,11 @@ const Codewar = () => {
                                 <div className="grid grid-cols-2 gap-4 mt-6">
                                     <div className="text-center">
                                         <h4 className="text-green-400 font-semibold">Duration</h4>
-                                        <p>3 Hours</p>
+                                        <p>48 Hours</p>
                                     </div>
                                     <div className="text-center">
-                                        <h4 className="text-green-400 font-semibold">Problems</h4>
-                                        <p>8-10 Challenges</p>
+                                        <h4 className="text-green-400 font-semibold">Team</h4>
+                                        <p>3-5 members</p>
                                     </div>
                                 </div>
                             </div>
@@ -219,4 +219,4 @@ const Codewar = () => {
     )
 }
 
-export default Codewar
+export default Hackathon
