@@ -6,6 +6,7 @@ import Registration from "./pages/registration"
 import Codewar from "./pages/codewar"
 import { Toaster } from 'react-hot-toast'
 import Hackathon from "./pages/hackathon"
+import GraphicDesigning from "./pages/graphicDesigning"
 
 function App() {
   return (
@@ -25,6 +26,7 @@ function App() {
         <Route path="/registration" element={<Registration />} />
         <Route path="/codewar" element={<Codewar />} />
         <Route path="/hackathon" element={<Hackathon />} />
+        <Route path="/graphic-designing" element={<GraphicDesigning />} />
 
         <Route path="*" element={<PageNotFound />} />
 

@@ -1,7 +1,7 @@
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
-import { ChevronDown, Code, MoveLeft } from 'lucide-react'
+import { ChevronDown, Code, MoveLeft, Palette } from 'lucide-react'
 import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import {
@@ -13,7 +13,7 @@ import {
 } from "@/components/ui/dropdown-menu"
 import toast from 'react-hot-toast'
 
-const Codewar = () => {
+const GraphicDesigning = () => {
     const navigate = useNavigate();
     const [name, setName] = useState('');
     const [semester, setSemester] = useState('');
@@ -62,9 +62,9 @@ const Codewar = () => {
             </nav>
             <div className=''>
                 <div className='flex flex-col items-center space-y-5'>
-                    <Code className='h-18 w-18 bg-green-500 p-4 rounded-full text-gray-100' />
-                    <h1 className=' text-3xl gradientEffect'>Code War</h1>
-                    <p className='text-gray-300 font-medium'>Individual Programming Competetion</p>
+                    <Palette className='h-18 w-18 bg-emerald-500 p-4 rounded-full text-gray-100' />
+                    <h1 className=' text-3xl gradientEffect'>Graphic Designing</h1>
+                    <p className='text-gray-300 font-medium'>Design the Unspoken. Speak Through Visuals.</p>
                 </div>
 
 
@@ -172,25 +172,23 @@ const Codewar = () => {
                     </div>
                     <div>
                         <div className='max-w-[400px] p-5 w-80 md:w-100 lg:w-140 shadow-[0_0_5px] m-5 rounded-lg space-y-2'>
-                            <h1 className='text-2xl font-medium gradientEffect '>About Code War</h1>
+                            <h1 className='text-2xl font-medium gradientEffect '>About Graphic Designing</h1>
                             <div className='grid gap-2 text-gray-400'>
                                 <p>
-                                    Code War is an intense individual programming competition designed to test your coding skills,
-                                    problem-solving abilities, and algorithmic thinking under time pressure.
+                                   Graphic designing is the art of visually communicating ideas that words alone can't express.
+                                    It blends creativity, color, layout, and typography to tell stories, evoke emotions, and
+                                    deliver messages clearly and beautifully. From branding to social media, a well-crafted design
+                                    leaves a lasting impact.
                                 </p>
-                                <p>
-                                    Participants will face a series of challenging programming problems that require efficient solutions
-                                    and optimal code implementation. The competition supports multiple programming languages including
-                                    C++, Java, Python, and JavaScript.
-                                </p>
+                               
                                 <div className="grid grid-cols-2 gap-4 mt-6">
                                     <div className="text-center">
                                         <h4 className="text-green-400 font-semibold">Duration</h4>
                                         <p>3 Hours</p>
                                     </div>
                                     <div className="text-center">
-                                        <h4 className="text-green-400 font-semibold">Problems</h4>
-                                        <p>8-10 Challenges</p>
+                                        <h4 className="text-green-400 font-semibold">Participant</h4>
+                                        <p>Individual</p>
                                     </div>
                                 </div>
                             </div>
@@ -219,4 +217,4 @@ const Codewar = () => {
     )
 }
 
-export default Codewar
+export default GraphicDesigning

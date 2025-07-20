@@ -9,7 +9,7 @@ const Registration = () => {
         <div>
             <nav className='flex h-30'>
                 <img src="/mainlogo.png" alt="" className=" m-5 h-18" />
-                <Button variant="ghost" className="hover:bg-transparent hover:text-white text-gray-300 absolute right-2 lg:right-10 top-10" onClick={()=>navigate('/landingpage')}><MoveLeft className='w-10 text-green-400'/> Go back</Button>
+                <Button variant="ghost" className="hover:bg-transparent hover:text-white text-gray-300 absolute right-2 lg:right-10 top-10" onClick={()=>navigate('/')}><MoveLeft className='w-10 text-green-400'/> Go back</Button>
 
             </nav>
             <div className='w-full items-center flex flex-col'>
@@ -52,7 +52,7 @@ const Registration = () => {
                         <p>• Creative Freedom</p>
                         <p>• Professional Judging</p>
                     </div>
-                     <Button className="shadow-none hover:scale-105 ease-in-out duration-200">Register for Graphic Designing</Button>
+                     <Button className="shadow-none hover:scale-105 ease-in-out duration-200" onClick={()=> navigate('/graphic-designing')}>Register for Graphic Designing</Button>
                 </div>
             </div>
         </div>

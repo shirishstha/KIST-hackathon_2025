@@ -1,7 +1,7 @@
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
-import { ChevronDown, Code, MoveLeft } from 'lucide-react'
+import { ChevronDown, Code, MoveLeft, Settings } from 'lucide-react'
 import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import {
@@ -11,32 +11,57 @@ import {
     DropdownMenuRadioItem,
     DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu"
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import toast from 'react-hot-toast'
 
 const Hackathon = () => {
     const navigate = useNavigate();
-    const [name, setName] = useState('');
-    const [semester, setSemester] = useState('');
-    const [faculty, setFaculty] = useState('');
-    const [email, setEmail] = useState('');
-    const [id, setId] = useState('');
+
+    const [team, setTeam] = useState({
+        name:"",
+        email:"",
+        faculty:""
+    });
+
+    const [members, setMembers] = useState({
+        member1:{name:"", email:"", id:"", semester:"", faculty:""},
+        member2:{name:"", email:"", id:"", semester:"", faculty:""},
+        member3:{name:"", email:"", id:"", semester:"", faculty:""},
+        member4:{name:"", email:"", id:"", semester:"", faculty:""}
+    })
+
+    const handleMemberChange = (key, field, value) => {
+        setMembers((prev)=> ({
+            ...prev,
+            [key]: {
+                ...prev[key],
+                [field]:value
+            }
+        }))
+    }
+
+    const handleTeamChange = (field, value) =>{
+        setTeam((prev) => ({
+            ...prev, [field]:value
+        }))
+    }
 
 
     const handleCheck = () => {
         //validations
-        if(!name || !semester || !faculty || !email || !id){
-            return toast.error("All fields must be filled");
-        }
+        
         const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/
-        if(!emailRegex.test(email)){
-            return toast.error("Invalid email format.");
-        }
+        
         const idRegex = /^[0-9]{4,}$/
-        if(!idRegex.test(id)){
-            return toast.error("Invalid id.")
-        }
+
+    for (const key in members) {
+  console.log(members[key]);
+}
+
+       console.log("For team /n " ,team.name, team.email, team.faculty);
+        
         toast.success('Registration success')
-        console.log(name, semester, faculty, email, id);
+        
     }
     return (
         <div>
@@ -62,111 +87,427 @@ const Hackathon = () => {
             </nav>
             <div className=''>
                 <div className='flex flex-col items-center space-y-5'>
-                    <Code className='h-18 w-18 bg-green-500 p-4 rounded-full text-black' />
+                    <Settings className='h-18 w-18 bg-teal-500 p-4 rounded-full text-gray-100' />
                     <h1 className=' text-3xl gradientEffect'>Hackathon</h1>
-                    <p className='text-gray-300 font-medium'>Individual Programming Competetion</p>
+                    <p className='text-gray-300 font-medium'>Code. Create. Conquer.</p>
                 </div>
 
 
-                
+
                 <div className='flex justify-center space-x-20 space-y-5 flex-wrap '>
                     {/* forms starts from here */}
-                    <div className='shadow-[0_0_5px]  p-5 w-120 px-10 space-y-5 rounded-lg m-5 '>
-                        <h1 className='text-2xl font-medium gradientEffect'>Registration Form</h1>
-                        <div className='grid gap-2'>
-                            <Label>Full Name</Label>
-                            <Input
-                                placeholder="Enter your name here"
-                                value={name}
-                                onChange={(e)=>setName(e.target.value)}
-                                type="text"
-                                required
-                            />
-                        </div>
-                        <div className='grid gap-2'>
-                            <Label>Email</Label>
-                            <Input 
-                              placeholder="Email here"
-                              value={email}
-                              onChange={(e)=>setEmail(e.target.value)}
-                              type="email"
-                              required
-                              />
-                        </div>
-                        <div className='grid gap-2'>
-                            <Label>Id no.</Label>
-                            <Input 
-                             placeholder="eg:6060"
-                             value={id}
-                             onChange={(e)=>setId(e.target.value)}
-                             type="text"
-                             required
-                             />
-                        </div>
+                    <div className='shadow-[0_0_5px]  p-5 lg:p-10 w-80 md:w-100 lg:w-120 px-5 space-y-5 rounded-lg m-5 '>
+                        <h1 className='text-2xl font-medium gradientEffect text-center'>Registration Form</h1>
+                        <Tabs defaultValue="team" className="space-y-2 w-full">
+                            <TabsList className="bg-gradient-to-r from-green-600 via-teal-500 to-emerald-500 selected:bg-red-800 w-full ">
+                                <TabsTrigger value="team" className="data-[state=active]:bg-black/80 data-[state=active]:text-gray-200">Team</TabsTrigger>
+                                <TabsTrigger value="member1" className="data-[state=active]:bg-black/80 data-[state=active]:text-gray-200"> 1</TabsTrigger>
+                                <TabsTrigger value="member2" className="data-[state=active]:bg-black/80 data-[state=active]:text-gray-200"> 2</TabsTrigger>
+                                <TabsTrigger value="member3" className="data-[state=active]:bg-black/80 data-[state=active]:text-gray-200"> 3</TabsTrigger>
+                                <TabsTrigger value="member4" className="data-[state=active]:bg-black/80 data-[state=active]:text-gray-200"> 4</TabsTrigger>
+                            </TabsList>
+                            <TabsContent value="team" className="flex flex-col space-y-4  ">
+                                <div className='grid gap-2'>
+                                    <Label>Team Name</Label>
+                                    <Input
+                                        placeholder="Enter your team name here"
+                                        value={team.name}
+                                        onChange={(e) => handleTeamChange("name", e.target.value)}
+                                        type="text"
+                                    />
+                                </div>
+                                <div className='grid gap-2'>
+                                    <Label>Contact Email</Label>
+                                    <Input
+                                        placeholder="Contact email here"
+                                        value={team.email}
+                                        onChange={(e) => handleTeamChange("email", e.target.value)}
+                                        type="email"
+                                    />
+                                </div>
+                                <div className='grid gap-2'>
+                                    <Label>Faculty</Label>
+                                    <DropdownMenu>
+                                        <DropdownMenuTrigger asChild>
+                                            <Button variant="outline" className="relative">
+                                                {team.faculty && team.faculty ?
+                                                    <div className='absolute left-3'>{team.faculty}</div> :
+                                                    (
+                                                        <h1 className='flex'> Choose your team's faculty <ChevronDown className='mt-1' /></h1>
+                                                    )}
+                                            </Button>
 
-                        <div className='grid gap-2'>
-                            <Label>Faculty</Label>
-                            <DropdownMenu>
-                                <DropdownMenuTrigger asChild>
-                                    <Button variant="outline" className="relative">
-                                        {faculty && faculty ?
-                                            <div className='absolute left-3'>{faculty}</div> :
-                                            (
-                                                <h1 className='flex'> Choose your Faculty <ChevronDown className='mt-1'/></h1>
-                                            )}
-                                    </Button>
-
-                                </DropdownMenuTrigger>
-                                <DropdownMenuContent className="w-56 bg-black border border-gray-300">
-                                    <DropdownMenuRadioGroup value={faculty} onValueChange={setFaculty} className="bg-black hover:bg-black  text-gray-300">
-                                        <DropdownMenuRadioItem value="BIM">BIM</DropdownMenuRadioItem>
-                                        <DropdownMenuRadioItem value="BIT">BIT</DropdownMenuRadioItem>
-                                        <DropdownMenuRadioItem value="BBA">BBA</DropdownMenuRadioItem>
-                                        <DropdownMenuRadioItem value="BSC">BSC</DropdownMenuRadioItem>
-                                        <DropdownMenuRadioItem value="+2">+2</DropdownMenuRadioItem>
-                                    </DropdownMenuRadioGroup>
-                                </DropdownMenuContent>
-                            </DropdownMenu>
-                        </div>
-
-                        <div className='grid gap-2'>
-                            <Label>Semester</Label>
-                            <p className='text-xs text-gray-400'>*Choose not applicable option for +2</p>
-                            <DropdownMenu>
-                                <DropdownMenuTrigger asChild>
-                                    <Button variant="outline" className="relative">
-                                        {semester && semester ?
-                                            <div className='absolute left-3'>{semester}</div> :
-                                            (
-                                                <h1 className='flex'> Select Semester <ChevronDown /></h1>
-                                            )}
-                                    </Button>
-
-                                </DropdownMenuTrigger>
-                                <DropdownMenuContent className="w-56 bg-black border border-gray-300">
-                                    <DropdownMenuRadioGroup value={semester} onValueChange={setSemester} className="bg-black hover:bg-black  text-gray-300">
-                                        <DropdownMenuRadioItem value="First">First</DropdownMenuRadioItem>
-                                        <DropdownMenuRadioItem value="Second">Second</DropdownMenuRadioItem>
-                                        <DropdownMenuRadioItem value="Third">Third</DropdownMenuRadioItem>
-                                        <DropdownMenuRadioItem value="Fourth">Fourth</DropdownMenuRadioItem>
-                                        <DropdownMenuRadioItem value="Fifth">Fifth</DropdownMenuRadioItem>
-                                        <DropdownMenuRadioItem value="Sixth">Sixth</DropdownMenuRadioItem>
-                                        <DropdownMenuRadioItem value="Seventh">Seventh</DropdownMenuRadioItem>
-                                        <DropdownMenuRadioItem value="Eighth">Eighth</DropdownMenuRadioItem>
-                                        <DropdownMenuRadioItem value="Not Applicable">Not Applicable</DropdownMenuRadioItem>
-                                    </DropdownMenuRadioGroup>
-                                </DropdownMenuContent>
-                            </DropdownMenu>
-                        </div>
+                                        </DropdownMenuTrigger>
+                                        <DropdownMenuContent className="w-56 bg-black border border-gray-300">
+                                            <DropdownMenuRadioGroup value={team.faculty} onValueChange={(value)=>handleTeamChange("faculty",value)} className="bg-black hover:bg-black  text-gray-300">
+                                                <DropdownMenuRadioItem value="BIM">BIM</DropdownMenuRadioItem>
+                                                <DropdownMenuRadioItem value="BIT">BIT</DropdownMenuRadioItem>
+                                                <DropdownMenuRadioItem value="BBA">BBA</DropdownMenuRadioItem>
+                                                <DropdownMenuRadioItem value="BSC">BSC</DropdownMenuRadioItem>
+                                                <DropdownMenuRadioItem value="+2">+2</DropdownMenuRadioItem>
+                                            </DropdownMenuRadioGroup>
+                                        </DropdownMenuContent>
+                                    </DropdownMenu>
+                                </div>
+                            </TabsContent>
 
 
+                            <TabsContent value="member1" className="flex flex-col space-y-4">
+                                <div className='grid gap-2'>
+                                    <Label>Full Name</Label>
+                                    <Input
+                                        placeholder="Enter your name here"
+                                        value = {members.member1.name}
+                                        onChange = {(e) => handleMemberChange("member1","name",e.target.value)}
+                                        type="text"
+                                    />
+                                </div>
+                                <div className='grid gap-2'>
+                                    <Label>Email</Label>
+                                    <Input
+                                        placeholder="Email here"
+                                        value={members.member1.email}
+                                        onChange={(e) => handleMemberChange("member1", "email",e.target.value)}
+                                        type="email"
+                                    />
+                                </div>
+                                <div className='grid gap-2'>
+                                    <Label>Id no.</Label>
+                                    <Input
+                                        placeholder="eg:6060"
+                                        value={members.member1.id}
+                                        onChange={(e) => handleMemberChange("member1", "id", e.target.value)}
+                                        type="text"
+                                    />
+                                </div>
 
+                                <div className='grid gap-2'>
+                                    <Label>Faculty</Label>
+                                    <DropdownMenu>
+                                        <DropdownMenuTrigger asChild>
+                                            <Button variant="outline" className="relative">
+                                                {members.member1.faculty && members.member1.faculty ?
+                                                    <div className='absolute left-3'>{members.member1.faculty}</div> :
+                                                    (
+                                                        <h1 className='flex'> Choose your Faculty <ChevronDown className='mt-1' /></h1>
+                                                    )}
+                                            </Button>
+
+                                        </DropdownMenuTrigger>
+                                        <DropdownMenuContent className="w-56 bg-black border border-gray-300">
+                                            <DropdownMenuRadioGroup value={members.member1.faculty} onValueChange={(value)=> handleMemberChange("member1", "faculty", value)} className="bg-black hover:bg-black  text-gray-300">
+                                                <DropdownMenuRadioItem value="BIM">BIM</DropdownMenuRadioItem>
+                                                <DropdownMenuRadioItem value="BIT">BIT</DropdownMenuRadioItem>
+                                                <DropdownMenuRadioItem value="BBA">BBA</DropdownMenuRadioItem>
+                                                <DropdownMenuRadioItem value="BSC">BSC</DropdownMenuRadioItem>
+                                                <DropdownMenuRadioItem value="+2">+2</DropdownMenuRadioItem>
+                                            </DropdownMenuRadioGroup>
+                                        </DropdownMenuContent>
+                                    </DropdownMenu>
+                                </div>
+
+                                <div className='grid gap-2'>
+                                    <Label>Semester</Label>
+                                    <p className='text-xs text-gray-400'>*Choose not applicable option for +2</p>
+                                    <DropdownMenu>
+                                        <DropdownMenuTrigger asChild>
+                                            <Button variant="outline" className="relative">
+                                                {members.member1.semester && members.member1.semester?
+                                                    <div className='absolute left-3'>{members.member1.semester}</div> :
+                                                    (
+                                                        <h1 className='flex'> Select Semester <ChevronDown /></h1>
+                                                    )}
+                                            </Button>
+
+                                        </DropdownMenuTrigger>
+                                        <DropdownMenuContent className="w-56 bg-black border border-gray-300">
+                                            <DropdownMenuRadioGroup value={members.member1.semester} onValueChange={(value) => handleMemberChange("member1", "semester",value)} className="bg-black hover:bg-black  text-gray-300">
+                                                <DropdownMenuRadioItem value="First">First</DropdownMenuRadioItem>
+                                                <DropdownMenuRadioItem value="Second">Second</DropdownMenuRadioItem>
+                                                <DropdownMenuRadioItem value="Third">Third</DropdownMenuRadioItem>
+                                                <DropdownMenuRadioItem value="Fourth">Fourth</DropdownMenuRadioItem>
+                                                <DropdownMenuRadioItem value="Fifth">Fifth</DropdownMenuRadioItem>
+                                                <DropdownMenuRadioItem value="Sixth">Sixth</DropdownMenuRadioItem>
+                                                <DropdownMenuRadioItem value="Seventh">Seventh</DropdownMenuRadioItem>
+                                                <DropdownMenuRadioItem value="Eighth">Eighth</DropdownMenuRadioItem>
+                                                <DropdownMenuRadioItem value="Not Applicable">Not Applicable</DropdownMenuRadioItem>
+                                            </DropdownMenuRadioGroup>
+                                        </DropdownMenuContent>
+                                    </DropdownMenu>
+                                </div>
+                            </TabsContent>
+
+
+
+                            <TabsContent value="member2" className="flex flex-col space-y-4">
+                                <div className='grid gap-2'>
+                                    <Label>Full Name</Label>
+                                    <Input
+                                        placeholder="Enter your name here"
+                                        value = {members.member2.name}
+                                        onChange = {(e) => handleMemberChange("member2","name",e.target.value)}
+                                        type="text"
+                                    />
+                                </div>
+                                <div className='grid gap-2'>
+                                    <Label>Email</Label>
+                                    <Input
+                                        placeholder="Email here"
+                                        value={members.member2.email}
+                                        onChange={(e) => handleMemberChange("member2", "email",e.target.value)}
+                                        type="email"
+                                    />
+                                </div>
+                                <div className='grid gap-2'>
+                                    <Label>Id no.</Label>
+                                    <Input
+                                        placeholder="eg:6060"
+                                        value={members.member2.id}
+                                        onChange={(e) => handleMemberChange("member2", "id", e.target.value)}
+                                        type="text"
+                                    />
+                                </div>
+
+                                <div className='grid gap-2'>
+                                    <Label>Faculty</Label>
+                                    <DropdownMenu>
+                                        <DropdownMenuTrigger asChild>
+                                            <Button variant="outline" className="relative">
+                                                {members.member2.faculty && members.member2.faculty ?
+                                                    <div className='absolute left-3'>{members.member2.faculty}</div> :
+                                                    (
+                                                        <h1 className='flex'> Choose your Faculty <ChevronDown className='mt-1' /></h1>
+                                                    )}
+                                            </Button>
+
+                                        </DropdownMenuTrigger>
+                                        <DropdownMenuContent className="w-56 bg-black border border-gray-300">
+                                            <DropdownMenuRadioGroup value={members.member2.faculty} onValueChange={(value)=> handleMemberChange("member2", "faculty", value)} className="bg-black hover:bg-black  text-gray-300">
+                                                <DropdownMenuRadioItem value="BIM">BIM</DropdownMenuRadioItem>
+                                                <DropdownMenuRadioItem value="BIT">BIT</DropdownMenuRadioItem>
+                                                <DropdownMenuRadioItem value="BBA">BBA</DropdownMenuRadioItem>
+                                                <DropdownMenuRadioItem value="BSC">BSC</DropdownMenuRadioItem>
+                                                <DropdownMenuRadioItem value="+2">+2</DropdownMenuRadioItem>
+                                            </DropdownMenuRadioGroup>
+                                        </DropdownMenuContent>
+                                    </DropdownMenu>
+                                </div>
+
+                                <div className='grid gap-2'>
+                                    <Label>Semester</Label>
+                                    <p className='text-xs text-gray-400'>*Choose not applicable option for +2</p>
+                                    <DropdownMenu>
+                                        <DropdownMenuTrigger asChild>
+                                            <Button variant="outline" className="relative">
+                                                {members.member2.semester && members.member2.semester?
+                                                    <div className='absolute left-3'>{members.member2.semester}</div> :
+                                                    (
+                                                        <h1 className='flex'> Select Semester <ChevronDown /></h1>
+                                                    )}
+                                            </Button>
+
+                                        </DropdownMenuTrigger>
+                                        <DropdownMenuContent className="w-56 bg-black border border-gray-300">
+                                            <DropdownMenuRadioGroup value={members.member2.semester} onValueChange={(value) => handleMemberChange("member2", "semester",value)} className="bg-black hover:bg-black  text-gray-300">
+                                                <DropdownMenuRadioItem value="First">First</DropdownMenuRadioItem>
+                                                <DropdownMenuRadioItem value="Second">Second</DropdownMenuRadioItem>
+                                                <DropdownMenuRadioItem value="Third">Third</DropdownMenuRadioItem>
+                                                <DropdownMenuRadioItem value="Fourth">Fourth</DropdownMenuRadioItem>
+                                                <DropdownMenuRadioItem value="Fifth">Fifth</DropdownMenuRadioItem>
+                                                <DropdownMenuRadioItem value="Sixth">Sixth</DropdownMenuRadioItem>
+                                                <DropdownMenuRadioItem value="Seventh">Seventh</DropdownMenuRadioItem>
+                                                <DropdownMenuRadioItem value="Eighth">Eighth</DropdownMenuRadioItem>
+                                                <DropdownMenuRadioItem value="Not Applicable">Not Applicable</DropdownMenuRadioItem>
+                                            </DropdownMenuRadioGroup>
+                                        </DropdownMenuContent>
+                                    </DropdownMenu>
+                                </div>
+                            </TabsContent>
+
+
+
+                            <TabsContent value="member3" className="flex flex-col space-y-4">
+                                <div className='grid gap-2'>
+                                    <Label>Full Name</Label>
+                                    <Input
+                                        placeholder="Enter your name here"
+                                        value = {members.member3.name}
+                                        onChange = {(e) => handleMemberChange("member3","name",e.target.value)}
+                                        type="text"
+                                    />
+                                </div>
+                                <div className='grid gap-2'>
+                                    <Label>Email</Label>
+                                    <Input
+                                        placeholder="Email here"
+                                        value={members.member3.email}
+                                        onChange={(e) => handleMemberChange("member3", "email",e.target.value)}
+                                        type="email"
+                                    />
+                                </div>
+                                <div className='grid gap-2'>
+                                    <Label>Id no.</Label>
+                                    <Input
+                                        placeholder="eg:6060"
+                                        value={members.member3.id}
+                                        onChange={(e) => handleMemberChange("member3", "id", e.target.value)}
+                                        type="text"
+                                    />
+                                </div>
+
+                                <div className='grid gap-2'>
+                                    <Label>Faculty</Label>
+                                    <DropdownMenu>
+                                        <DropdownMenuTrigger asChild>
+                                            <Button variant="outline" className="relative">
+                                                {members.member3.faculty && members.member3.faculty ?
+                                                    <div className='absolute left-3'>{members.member3.faculty}</div> :
+                                                    (
+                                                        <h1 className='flex'> Choose your Faculty <ChevronDown className='mt-1' /></h1>
+                                                    )}
+                                            </Button>
+
+                                        </DropdownMenuTrigger>
+                                        <DropdownMenuContent className="w-56 bg-black border border-gray-300">
+                                            <DropdownMenuRadioGroup value={members.member3.faculty} onValueChange={(value)=> handleMemberChange("member3", "faculty", value)} className="bg-black hover:bg-black  text-gray-300">
+                                                <DropdownMenuRadioItem value="BIM">BIM</DropdownMenuRadioItem>
+                                                <DropdownMenuRadioItem value="BIT">BIT</DropdownMenuRadioItem>
+                                                <DropdownMenuRadioItem value="BBA">BBA</DropdownMenuRadioItem>
+                                                <DropdownMenuRadioItem value="BSC">BSC</DropdownMenuRadioItem>
+                                                <DropdownMenuRadioItem value="+2">+2</DropdownMenuRadioItem>
+                                            </DropdownMenuRadioGroup>
+                                        </DropdownMenuContent>
+                                    </DropdownMenu>
+                                </div>
+
+                                <div className='grid gap-2'>
+                                    <Label>Semester</Label>
+                                    <p className='text-xs text-gray-400'>*Choose not applicable option for +2</p>
+                                    <DropdownMenu>
+                                        <DropdownMenuTrigger asChild>
+                                            <Button variant="outline" className="relative">
+                                                {members.member3.semester && members.member3.semester?
+                                                    <div className='absolute left-3'>{members.member3.semester}</div> :
+                                                    (
+                                                        <h1 className='flex'> Select Semester <ChevronDown /></h1>
+                                                    )}
+                                            </Button>
+
+                                        </DropdownMenuTrigger>
+                                        <DropdownMenuContent className="w-56 bg-black border border-gray-300">
+                                            <DropdownMenuRadioGroup value={members.member3.semester} onValueChange={(value) => handleMemberChange("member3", "semester", value)} className="bg-black hover:bg-black  text-gray-300">
+                                                <DropdownMenuRadioItem value="First">First</DropdownMenuRadioItem>
+                                                <DropdownMenuRadioItem value="Second">Second</DropdownMenuRadioItem>
+                                                <DropdownMenuRadioItem value="Third">Third</DropdownMenuRadioItem>
+                                                <DropdownMenuRadioItem value="Fourth">Fourth</DropdownMenuRadioItem>
+                                                <DropdownMenuRadioItem value="Fifth">Fifth</DropdownMenuRadioItem>
+                                                <DropdownMenuRadioItem value="Sixth">Sixth</DropdownMenuRadioItem>
+                                                <DropdownMenuRadioItem value="Seventh">Seventh</DropdownMenuRadioItem>
+                                                <DropdownMenuRadioItem value="Eighth">Eighth</DropdownMenuRadioItem>
+                                                <DropdownMenuRadioItem value="Not Applicable">Not Applicable</DropdownMenuRadioItem>
+                                            </DropdownMenuRadioGroup>
+                                        </DropdownMenuContent>
+                                    </DropdownMenu>
+                                </div>
+                            </TabsContent>
+
+
+
+                            <TabsContent value="member4" className="flex flex-col space-y-4">
+                                <div className='grid gap-2'>
+                                    <Label>Full Name</Label>
+                                    <Input
+                                        placeholder="Enter your name here"
+                                        value = {members.member4.name}
+                                        onChange = {(e) => handleMemberChange("member4","name",e.target.value)}
+                                        type="text"
+                                    />
+                                </div>
+                                <div className='grid gap-2'>
+                                    <Label>Email</Label>
+                                    <Input
+                                        placeholder="Email here"
+                                        value={members.member4.email}
+                                        onChange={(e) => handleMemberChange("member4", "email",e.target.value)}
+                                        type="email"
+                                    />
+                                </div>
+                                <div className='grid gap-2'>
+                                    <Label>Id no.</Label>
+                                    <Input
+                                        placeholder="eg:6060"
+                                        value={members.member4.id}
+                                        onChange={(e) => handleMemberChange("member4", "id", e.target.value)}
+                                        type="text"
+                                    />
+                                </div>
+
+                                <div className='grid gap-2'>
+                                    <Label>Faculty</Label>
+                                    <DropdownMenu>
+                                        <DropdownMenuTrigger asChild>
+                                            <Button variant="outline" className="relative">
+                                                {members.member4.faculty && members.member4.faculty ?
+                                                    <div className='absolute left-3'>{members.member4.faculty}</div> :
+                                                    (
+                                                        <h1 className='flex'> Choose your Faculty <ChevronDown className='mt-1' /></h1>
+                                                    )}
+                                            </Button>
+
+                                        </DropdownMenuTrigger>
+                                        <DropdownMenuContent className="w-56 bg-black border border-gray-300">
+                                            <DropdownMenuRadioGroup value={members.member4.faculty} onValueChange={(value)=> handleMemberChange("member4", "faculty", value)} className="bg-black hover:bg-black  text-gray-300">
+                                                <DropdownMenuRadioItem value="BIM">BIM</DropdownMenuRadioItem>
+                                                <DropdownMenuRadioItem value="BIT">BIT</DropdownMenuRadioItem>
+                                                <DropdownMenuRadioItem value="BBA">BBA</DropdownMenuRadioItem>
+                                                <DropdownMenuRadioItem value="BSC">BSC</DropdownMenuRadioItem>
+                                                <DropdownMenuRadioItem value="+2">+2</DropdownMenuRadioItem>
+                                            </DropdownMenuRadioGroup>
+                                        </DropdownMenuContent>
+                                    </DropdownMenu>
+                                </div>
+
+                                <div className='grid gap-2'>
+                                    <Label>Semester</Label>
+                                    <p className='text-xs text-gray-400'>*Choose not applicable option for +2</p>
+                                    <DropdownMenu>
+                                        <DropdownMenuTrigger asChild>
+                                            <Button variant="outline" className="relative">
+                                                {members.member4.semester && members.member4.semester?
+                                                    <div className='absolute left-3'>{members.member4.semester}</div> :
+                                                    (
+                                                        <h1 className='flex'> Select Semester <ChevronDown /></h1>
+                                                    )}
+                                            </Button>
+
+                                        </DropdownMenuTrigger>
+                                        <DropdownMenuContent className="w-56 bg-black border border-gray-300">
+                                            <DropdownMenuRadioGroup value={members.member4.semester} onValueChange={(value) => handleMemberChange("member4", "semester",value)} className="bg-black hover:bg-black  text-gray-300">
+                                                <DropdownMenuRadioItem value="First">First</DropdownMenuRadioItem>
+                                                <DropdownMenuRadioItem value="Second">Second</DropdownMenuRadioItem>
+                                                <DropdownMenuRadioItem value="Third">Third</DropdownMenuRadioItem>
+                                                <DropdownMenuRadioItem value="Fourth">Fourth</DropdownMenuRadioItem>
+                                                <DropdownMenuRadioItem value="Fifth">Fifth</DropdownMenuRadioItem>
+                                                <DropdownMenuRadioItem value="Sixth">Sixth</DropdownMenuRadioItem>
+                                                <DropdownMenuRadioItem value="Seventh">Seventh</DropdownMenuRadioItem>
+                                                <DropdownMenuRadioItem value="Eighth">Eighth</DropdownMenuRadioItem>
+                                                <DropdownMenuRadioItem value="Not Applicable">Not Applicable</DropdownMenuRadioItem>
+                                            </DropdownMenuRadioGroup>
+                                        </DropdownMenuContent>
+                                    </DropdownMenu>
+                                </div>
+
+                            </TabsContent>
+                        </Tabs>
                         <Button onClick={() => handleCheck()} >Check Details</Button>
 
                         {/* notes */}
                         <div className='mt-8 text-gray-400'>
-                            <h1 className='text-lg'>Note:</h1>
+                            <h1 className='text-lg '>Things to remember:</h1>
+                            <p>Fill all the details of your team and members then only submit the registration.</p>
+                            <h1 className='text-lg pt-3'>Note:</h1>
                             <p>Enter valid email address and confirm the submission as all the information is circulate through emails only.And one email is only liable for one registration. Choose your semester and faculty wisely .Lastly id no is the id provided by the college.</p>
+
                         </div>
 
                     </div>
@@ -175,13 +516,10 @@ const Hackathon = () => {
                             <h1 className='text-2xl font-medium gradientEffect '>About Hackathon</h1>
                             <div className='grid gap-2 text-gray-400'>
                                 <p>
-                                    Code War is an intense individual programming competition designed to test your coding skills,
-                                    problem-solving abilities, and algorithmic thinking under time pressure.
-                                </p>
-                                <p>
-                                    Participants will face a series of challenging programming problems that require efficient solutions
-                                    and optimal code implementation. The competition supports multiple programming languages including
-                                    C++, Java, Python, and JavaScript.
+                                    A hackathon is a sprint-like event where developers, designers, and innovators come together
+                                    to build solutions under time pressure. It fosters creativity, collaboration, and rapid prototyping.
+                                    Whether solving real-world problems or showcasing technical skills, hackathons are where ideas become
+                                    impactful innovations.
                                 </p>
                                 <div className="grid grid-cols-2 gap-4 mt-6">
                                     <div className="text-center">
@@ -202,15 +540,17 @@ const Hackathon = () => {
                             </div>
                             <div className="text-gray-400">
                                 <ul className="space-y-3 list-disc list-inside">
-                                    <li>Individual participation only - no team collaboration allowed</li>
-                                    <li>Use of internet for documentation is permitted</li>
-                                    <li>Ranking will be based on number of problems solved and time taken</li>
-                                    <li>In case of ties, the participant with faster submission time wins</li>
-                                    <li>Any form of cheating or plagiarism will result in immediate disqualification</li>
-                                    <li>Organizers' decision will be final in case of disputes</li>
-                                    <li>Participants must be present 30 minutes before the competition starts</li>
+                                    <li>Team size: 3 to 5 members per team</li>
+                                    <li>Duration: 48 hours (non-stop coding)</li>
+                                    <li>Build from scratch – no pre-written code or reused projects allowed</li>
+                                    <li>Projects must follow the given theme or problem statement</li>
+                                    <li>Internet and open-source resources allowed (with attribution)</li>
+                                    <li>Maintain professional conduct and team spirit</li>
                                 </ul>
                             </div>
+                        </div>
+                        <div>
+
                         </div>
                     </div>
                 </div>
