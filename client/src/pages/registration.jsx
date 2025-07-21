@@ -44,7 +44,7 @@ const Registration = () => {
                 </div>
                 <div className='shadow-[0_0_3px] hover:shadow-[0_0_30px] hover:shadow-emerald-600 group hover:scale-105 transition-all ease-in-out duration-300 rounded-lg p-5 space-y-3 mb-[32px] flex flex-col items-center w-full lg:w-90'>
                     <Palette className=' bg-emerald-600 h-12 rounded-lg w-12 p-2' />
-                    <h1 className='text-xl font-bold text-gray-300 group-hover:text-gray-200'>Graphic Designing</h1>
+                    <h1 className='text-xl font-bold text-gray-300 group-hover:text-gray-200'>UI/UX</h1>
                     <p className='text-gray-400 text-center pb-10 group-hover:text-gray-300 '> Showcase your creativity and design skills</p>
                     <div className="space-y-2 mb-6  text-gray-400">
                         <p>• Individual Competition</p>
@@ -52,7 +52,7 @@ const Registration = () => {
                         <p>• Creative Freedom</p>
                         <p>• Professional Judging</p>
                     </div>
-                     <Button className="shadow-none hover:scale-105 ease-in-out duration-200" onClick={()=> navigate('/graphic-designing')}>Register for Graphic Designing</Button>
+                     <Button className="shadow-none hover:scale-105 ease-in-out duration-200" onClick={()=> navigate('/graphic-designing')}>Register for UI/UX</Button>
                 </div>
             </div>
         </div>

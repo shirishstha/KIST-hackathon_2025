@@ -51,11 +51,6 @@ const HomePage = () => {
                             </div>
 
                             <div className="flex flex-col items-center">
-                                <span className="text-4xl text-emerald-500">$100+</span>
-                                <span className="text-sm">Prize Pool</span>
-                            </div>
-
-                            <div className="flex flex-col items-center">
                                 <span className="text-4xl gradientEffect">30+</span>
                                 <span className="text-sm">Projects</span>
                             </div>
@@ -93,9 +88,9 @@ const HomePage = () => {
                         </div>
                         <div className='shadow-[0_0_30px] hover:shadow-emerald-600 rounded-lg p-5 space-y-1 mb-[32px]'>
                             <Palette className=' bg-emerald-500 h-8 rounded-lg w-8 p-2'/>
-                            <h1 className='text-xl font-bold'>Graphic Designing</h1>
+                            <h1 className='text-xl font-bold'>UI/UX</h1>
                             <p className='text-gray-400 max-w-80'>
-                                Unleash your artistic flair in our graphic design showdown,
+                                Unleash your artistic flair in our UI/UX showdown,
                                 where imagination meets digital canvas. Craft visually stunning
                                 designs that tell stories, spark emotions, and leave a lasting impact.</p>
                         </div>
@@ -103,9 +98,6 @@ const HomePage = () => {
                     </div>
                 </div>
 
-            </div>
-            <div className='shadow-[0_0_32px] shadow-green-300 h-30 bg-black'>
-                footer here
             </div>
             
         </div>

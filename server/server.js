@@ -1,12 +1,18 @@
-//external module 
+//external modules
 const express = require('express');
 const cors = require('cors');
 const dotenv = require('dotenv');
+
+//local modules
 const userRouter = require('./routes/userRoutes');
+const connectDB = require('./helpers/db');
 
 //initialization of app
 dotenv.config();
 const app = express();
+
+//database connection
+connectDB();
 
 
 //for testing

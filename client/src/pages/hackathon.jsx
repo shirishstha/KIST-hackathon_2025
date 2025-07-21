@@ -13,6 +13,7 @@ import {
 } from "@/components/ui/dropdown-menu"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import toast from 'react-hot-toast'
+import axios from 'axios'
 
 const Hackathon = () => {
     const navigate = useNavigate();
@@ -20,7 +21,8 @@ const Hackathon = () => {
     const [team, setTeam] = useState({
         name: "",
         email: "",
-        faculty: ""
+        faculty: "",
+        contact: "",
     });
 
     const [members, setMembers] = useState({
@@ -90,7 +92,9 @@ const Hackathon = () => {
 
     const validateTeam = () => {
         const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/
-        if(!team.email || !team.name || !team.faculty){
+        const contactRegex = /^(98|97|96)\d{8}$/
+
+        if(!team.email || !team.name || !team.faculty || !team.contact){
              toast.error("All fields of team must be filled properly.");
              return false;
         }
@@ -98,11 +102,15 @@ const Hackathon = () => {
              toast.error("Email format of team is invalid");
              return false;
         }
+        if(!contactRegex.test(team.contact)){
+             toast.error("Phone no format of team is invalid");
+             return false;
+        }
 
         return true;   
     }
 
-    const handleCheck = () => {
+    const handleCheck = async() => {
         //team validation
         const validTeam = validateTeam();
         if(!validTeam) return;
@@ -117,13 +125,13 @@ const Hackathon = () => {
         }
        
         //after successfull validation sending data to backend
-        const payload ={
-            members,
-            team
+
+        const res = await axios.post(`${import.meta.env.VITE_BACKENDAPI}/hackathon`,{team, members});
+        if(!res.data.success){
+            return toast.error(res.data.message);
         }
-
-
-        toast.success('Registration success')
+        
+        toast.success(res.data.message);
 
     }
     return (
@@ -180,12 +188,21 @@ const Hackathon = () => {
                                     />
                                 </div>
                                 <div className='grid gap-2'>
-                                    <Label>Contact Email</Label>
+                                    <Label> Email</Label>
                                     <Input
-                                        placeholder="Contact email here"
+                                        placeholder=" Email here"
                                         value={team.email}
                                         onChange={(e) => handleTeamChange("email", e.target.value)}
                                         type="email"
+                                    />
+                                </div>
+                                <div className='grid gap-2'>
+                                    <Label>Contact no.</Label>
+                                    <Input
+                                        placeholder="Contact no here"
+                                        value={team.contact}
+                                        onChange={(e) => handleTeamChange("contact", e.target.value)}
+                                        type="text"
                                     />
                                 </div>
                                 <div className='grid gap-2'>
@@ -562,7 +579,7 @@ const Hackathon = () => {
 
                             </TabsContent>
                         </Tabs>
-                        <Button onClick={() => handleCheck()} >Check Details</Button>
+                        <Button onClick={() => handleCheck()} >Submit</Button>
 
                         {/* notes */}
                         <div className='mt-8 text-gray-400'>

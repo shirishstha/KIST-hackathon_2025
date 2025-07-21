@@ -12,6 +12,7 @@ import {
     DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu"
 import toast from 'react-hot-toast'
+import axios from 'axios'
 
 const Codewar = () => {
     const navigate = useNavigate();
@@ -22,21 +23,28 @@ const Codewar = () => {
     const [id, setId] = useState('');
 
 
-    const handleCheck = () => {
-        //validations
-        if(!name || !semester || !faculty || !email || !id){
+    const handleCheck = async () => {
+        //validation logics
+        if (!name || !semester || !faculty || !email || !id) {
             return toast.error("All fields must be filled");
         }
         const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/
-        if(!emailRegex.test(email)){
+        if (!emailRegex.test(email)) {
             return toast.error("Invalid email format.");
         }
         const idRegex = /^[0-9]{4,}$/
-        if(!idRegex.test(id)){
+        if (!idRegex.test(id)) {
             return toast.error("Invalid id.")
         }
-        toast.success('Registration success')
-        console.log(name, semester, faculty, email, id);
+
+        //call backend api
+        const res = await axios.post(`${import.meta.env.VITE_BACKENDAPI}/codewar`, { name, semester, faculty, email, id });
+        
+        if (!res.data.success) {
+            toast.error(res.data.message);
+            return;
+        }
+        toast.success(res.data.message);
     }
     return (
         <div>
@@ -68,7 +76,7 @@ const Codewar = () => {
                 </div>
 
 
-                
+
                 <div className='flex justify-center space-x-20 space-y-5 flex-wrap '>
                     {/* forms starts from here */}
                     <div className='shadow-[0_0_5px]  p-5 w-120 px-10 space-y-5 rounded-lg m-5 '>
@@ -78,30 +86,30 @@ const Codewar = () => {
                             <Input
                                 placeholder="Enter your name here"
                                 value={name}
-                                onChange={(e)=>setName(e.target.value)}
+                                onChange={(e) => setName(e.target.value)}
                                 type="text"
                                 required
                             />
                         </div>
                         <div className='grid gap-2'>
                             <Label>Email</Label>
-                            <Input 
-                              placeholder="Email here"
-                              value={email}
-                              onChange={(e)=>setEmail(e.target.value)}
-                              type="email"
-                              required
-                              />
+                            <Input
+                                placeholder="Email here"
+                                value={email}
+                                onChange={(e) => setEmail(e.target.value)}
+                                type="email"
+                                required
+                            />
                         </div>
                         <div className='grid gap-2'>
                             <Label>Id no.</Label>
-                            <Input 
-                             placeholder="eg:6060"
-                             value={id}
-                             onChange={(e)=>setId(e.target.value)}
-                             type="text"
-                             required
-                             />
+                            <Input
+                                placeholder="eg:6060"
+                                value={id}
+                                onChange={(e) => setId(e.target.value)}
+                                type="text"
+                                required
+                            />
                         </div>
 
                         <div className='grid gap-2'>
@@ -112,7 +120,7 @@ const Codewar = () => {
                                         {faculty && faculty ?
                                             <div className='absolute left-3'>{faculty}</div> :
                                             (
-                                                <h1 className='flex'> Choose your Faculty <ChevronDown className='mt-1'/></h1>
+                                                <h1 className='flex'> Choose your Faculty <ChevronDown className='mt-1' /></h1>
                                             )}
                                     </Button>
 

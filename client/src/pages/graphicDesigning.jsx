@@ -1,7 +1,7 @@
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
-import { ChevronDown, Code, MoveLeft, Palette } from 'lucide-react'
+import { ChevronDown, MoveLeft, Palette } from 'lucide-react'
 import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import {
@@ -12,6 +12,7 @@ import {
     DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu"
 import toast from 'react-hot-toast'
+import axios from 'axios'
 
 const GraphicDesigning = () => {
     const navigate = useNavigate();
@@ -22,21 +23,27 @@ const GraphicDesigning = () => {
     const [id, setId] = useState('');
 
 
-    const handleCheck = () => {
+    const handleCheck = async () => {
         //validations
-        if(!name || !semester || !faculty || !email || !id){
+        if (!name || !semester || !faculty || !email || !id) {
             return toast.error("All fields must be filled");
         }
         const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/
-        if(!emailRegex.test(email)){
+        if (!emailRegex.test(email)) {
             return toast.error("Invalid email format.");
         }
         const idRegex = /^[0-9]{4,}$/
-        if(!idRegex.test(id)){
+        if (!idRegex.test(id)) {
             return toast.error("Invalid id.")
         }
-        toast.success('Registration success')
-        console.log(name, semester, faculty, email, id);
+
+        const res = await axios.post(`${import.meta.env.VITE_BACKENDAPI}/graphicdesigning`, { name, semester, faculty, email, id });
+
+        if (!res.data.success) {
+            toast.error(res.data.message);
+            return;
+        }
+        toast.success(res.data.message);
     }
     return (
         <div>
@@ -63,12 +70,12 @@ const GraphicDesigning = () => {
             <div className=''>
                 <div className='flex flex-col items-center space-y-5'>
                     <Palette className='h-18 w-18 bg-emerald-500 p-4 rounded-full text-gray-100' />
-                    <h1 className=' text-3xl gradientEffect'>Graphic Designing</h1>
+                    <h1 className=' text-3xl gradientEffect'>UI/UX</h1>
                     <p className='text-gray-300 font-medium'>Design the Unspoken. Speak Through Visuals.</p>
                 </div>
 
 
-                
+
                 <div className='flex justify-center space-x-20 space-y-5 flex-wrap '>
                     {/* forms starts from here */}
                     <div className='shadow-[0_0_5px]  p-5 w-120 px-10 space-y-5 rounded-lg m-5 '>
@@ -78,30 +85,30 @@ const GraphicDesigning = () => {
                             <Input
                                 placeholder="Enter your name here"
                                 value={name}
-                                onChange={(e)=>setName(e.target.value)}
+                                onChange={(e) => setName(e.target.value)}
                                 type="text"
                                 required
                             />
                         </div>
                         <div className='grid gap-2'>
                             <Label>Email</Label>
-                            <Input 
-                              placeholder="Email here"
-                              value={email}
-                              onChange={(e)=>setEmail(e.target.value)}
-                              type="email"
-                              required
-                              />
+                            <Input
+                                placeholder="Email here"
+                                value={email}
+                                onChange={(e) => setEmail(e.target.value)}
+                                type="email"
+                                required
+                            />
                         </div>
                         <div className='grid gap-2'>
                             <Label>Id no.</Label>
-                            <Input 
-                             placeholder="eg:6060"
-                             value={id}
-                             onChange={(e)=>setId(e.target.value)}
-                             type="text"
-                             required
-                             />
+                            <Input
+                                placeholder="eg:6060"
+                                value={id}
+                                onChange={(e) => setId(e.target.value)}
+                                type="text"
+                                required
+                            />
                         </div>
 
                         <div className='grid gap-2'>
@@ -112,7 +119,7 @@ const GraphicDesigning = () => {
                                         {faculty && faculty ?
                                             <div className='absolute left-3'>{faculty}</div> :
                                             (
-                                                <h1 className='flex'> Choose your Faculty <ChevronDown className='mt-1'/></h1>
+                                                <h1 className='flex'> Choose your Faculty <ChevronDown className='mt-1' /></h1>
                                             )}
                                     </Button>
 
@@ -172,15 +179,15 @@ const GraphicDesigning = () => {
                     </div>
                     <div>
                         <div className='max-w-[400px] p-5 w-80 md:w-100 lg:w-140 shadow-[0_0_5px] m-5 rounded-lg space-y-2'>
-                            <h1 className='text-2xl font-medium gradientEffect '>About Graphic Designing</h1>
+                            <h1 className='text-2xl font-medium gradientEffect '>About UI/UX</h1>
                             <div className='grid gap-2 text-gray-400'>
                                 <p>
-                                   Graphic designing is the art of visually communicating ideas that words alone can't express.
+                                    It is the art of visually communicating ideas that words alone can't express.
                                     It blends creativity, color, layout, and typography to tell stories, evoke emotions, and
                                     deliver messages clearly and beautifully. From branding to social media, a well-crafted design
                                     leaves a lasting impact.
                                 </p>
-                               
+
                                 <div className="grid grid-cols-2 gap-4 mt-6">
                                     <div className="text-center">
                                         <h4 className="text-green-400 font-semibold">Duration</h4>
