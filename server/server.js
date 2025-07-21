@@ -1,8 +1,11 @@
 //external module 
 const express = require('express');
 const cors = require('cors');
+const dotenv = require('dotenv');
+const userRouter = require('./routes/userRoutes');
 
 //initialization of app
+dotenv.config();
 const app = express();
 
 
@@ -17,11 +20,13 @@ app.use(cors());
 
 app.use(express.json());
 
-app.get('/',(req,res)=>{
+// routes
+app.use('/api/kisthackfest/landing',(req,res)=>{
     res.send("Your backend is running successfully");
 })
+app.use('/api/kisthackfest',userRouter);
 
-const PORT = 8080;
+const PORT = process.env.PORT;
 app.listen(PORT,()=>{
     console.log(`Your server is running on http://localhost:${PORT}`);
 })
