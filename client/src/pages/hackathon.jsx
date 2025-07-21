@@ -18,50 +18,113 @@ const Hackathon = () => {
     const navigate = useNavigate();
 
     const [team, setTeam] = useState({
-        name:"",
-        email:"",
-        faculty:""
+        name: "",
+        email: "",
+        faculty: ""
     });
 
     const [members, setMembers] = useState({
-        member1:{name:"", email:"", id:"", semester:"", faculty:""},
-        member2:{name:"", email:"", id:"", semester:"", faculty:""},
-        member3:{name:"", email:"", id:"", semester:"", faculty:""},
-        member4:{name:"", email:"", id:"", semester:"", faculty:""}
+        member1: { name: "", email: "", id: "", semester: "", faculty: "" },
+        member2: { name: "", email: "", id: "", semester: "", faculty: "" },
+        member3: { name: "", email: "", id: "", semester: "", faculty: "" },
+        member4: { name: "", email: "", id: "", semester: "", faculty: "" }
     })
 
     const handleMemberChange = (key, field, value) => {
-        setMembers((prev)=> ({
+        setMembers((prev) => ({
             ...prev,
             [key]: {
                 ...prev[key],
-                [field]:value
+                [field]: value
             }
         }))
     }
 
-    const handleTeamChange = (field, value) =>{
+    const handleTeamChange = (field, value) => {
         setTeam((prev) => ({
-            ...prev, [field]:value
+            ...prev, [field]: value
         }))
     }
 
+    const validateMembers = () => {
+        const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/
+        const idRegex = /^[0-9]{4,}$/
+        const values = Object.values(members);
+        let fullyValidCount = 0;
+        const errors = [];
+
+        for (let i = 0; i < values.length; i++) {
+            const {name, email, id, semester, faculty} = values[i];
+            const filledFields = [name, email, id, semester, faculty] .filter(Boolean).length;
+
+            //all field empty case 
+            if(filledFields === 0) continue; //skips the optional members
+
+            //partially filled case
+            if(filledFields < 5){
+                errors.push( `Member ${i+1} has incomplete fields`);
+                continue;
+            }
+
+            //if all fields are filled check for validations 
+            if(!emailRegex.test(email) ){
+                errors.push(`Member ${i+1} consist invalid email`);
+            }
+            if(!idRegex.test(id)){
+                errors.push(`Member ${i+1} has invalid id`);
+                continue;
+            }
+
+            fullyValidCount++;
+        }
+
+        if(fullyValidCount < 2){
+            errors.push("At least two members must be fully filled.")
+        }
+
+        return{
+            isValid: errors.length === 0,
+            errors,
+        }
+    }
+
+    const validateTeam = () => {
+        const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/
+        if(!team.email || !team.name || !team.faculty){
+             toast.error("All fields of team must be filled properly.");
+             return false;
+        }
+        if(!emailRegex.test(team.email)){
+             toast.error("Email format of team is invalid");
+             return false;
+        }
+
+        return true;   
+    }
 
     const handleCheck = () => {
-        //validations
-        
-        const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/
-        
-        const idRegex = /^[0-9]{4,}$/
+        //team validation
+        const validTeam = validateTeam();
+        if(!validTeam) return;
 
-    for (const key in members) {
-  console.log(members[key]);
-}
+        //members validation
+        const {isValid, errors} = validateMembers();
+        if(!isValid){
+            errors.forEach(error => {
+                toast.error(error);
+            });
+            return;
+        }
+       
+        //after successfull validation sending data to backend
+        const payload ={
+            members,
+            team
+        }
 
-       console.log("For team /n " ,team.name, team.email, team.faculty);
-        
+
         toast.success('Registration success')
-        
+
     }
     return (
         <div>
@@ -139,7 +202,7 @@ const Hackathon = () => {
 
                                         </DropdownMenuTrigger>
                                         <DropdownMenuContent className="w-56 bg-black border border-gray-300">
-                                            <DropdownMenuRadioGroup value={team.faculty} onValueChange={(value)=>handleTeamChange("faculty",value)} className="bg-black hover:bg-black  text-gray-300">
+                                            <DropdownMenuRadioGroup value={team.faculty} onValueChange={(value) => handleTeamChange("faculty", value)} className="bg-black hover:bg-black  text-gray-300">
                                                 <DropdownMenuRadioItem value="BIM">BIM</DropdownMenuRadioItem>
                                                 <DropdownMenuRadioItem value="BIT">BIT</DropdownMenuRadioItem>
                                                 <DropdownMenuRadioItem value="BBA">BBA</DropdownMenuRadioItem>
@@ -157,8 +220,8 @@ const Hackathon = () => {
                                     <Label>Full Name</Label>
                                     <Input
                                         placeholder="Enter your name here"
-                                        value = {members.member1.name}
-                                        onChange = {(e) => handleMemberChange("member1","name",e.target.value)}
+                                        value={members.member1.name}
+                                        onChange={(e) => handleMemberChange("member1", "name", e.target.value)}
                                         type="text"
                                     />
                                 </div>
@@ -167,7 +230,7 @@ const Hackathon = () => {
                                     <Input
                                         placeholder="Email here"
                                         value={members.member1.email}
-                                        onChange={(e) => handleMemberChange("member1", "email",e.target.value)}
+                                        onChange={(e) => handleMemberChange("member1", "email", e.target.value)}
                                         type="email"
                                     />
                                 </div>
@@ -195,7 +258,7 @@ const Hackathon = () => {
 
                                         </DropdownMenuTrigger>
                                         <DropdownMenuContent className="w-56 bg-black border border-gray-300">
-                                            <DropdownMenuRadioGroup value={members.member1.faculty} onValueChange={(value)=> handleMemberChange("member1", "faculty", value)} className="bg-black hover:bg-black  text-gray-300">
+                                            <DropdownMenuRadioGroup value={members.member1.faculty} onValueChange={(value) => handleMemberChange("member1", "faculty", value)} className="bg-black hover:bg-black  text-gray-300">
                                                 <DropdownMenuRadioItem value="BIM">BIM</DropdownMenuRadioItem>
                                                 <DropdownMenuRadioItem value="BIT">BIT</DropdownMenuRadioItem>
                                                 <DropdownMenuRadioItem value="BBA">BBA</DropdownMenuRadioItem>
@@ -212,7 +275,7 @@ const Hackathon = () => {
                                     <DropdownMenu>
                                         <DropdownMenuTrigger asChild>
                                             <Button variant="outline" className="relative">
-                                                {members.member1.semester && members.member1.semester?
+                                                {members.member1.semester && members.member1.semester ?
                                                     <div className='absolute left-3'>{members.member1.semester}</div> :
                                                     (
                                                         <h1 className='flex'> Select Semester <ChevronDown /></h1>
@@ -221,7 +284,7 @@ const Hackathon = () => {
 
                                         </DropdownMenuTrigger>
                                         <DropdownMenuContent className="w-56 bg-black border border-gray-300">
-                                            <DropdownMenuRadioGroup value={members.member1.semester} onValueChange={(value) => handleMemberChange("member1", "semester",value)} className="bg-black hover:bg-black  text-gray-300">
+                                            <DropdownMenuRadioGroup value={members.member1.semester} onValueChange={(value) => handleMemberChange("member1", "semester", value)} className="bg-black hover:bg-black  text-gray-300">
                                                 <DropdownMenuRadioItem value="First">First</DropdownMenuRadioItem>
                                                 <DropdownMenuRadioItem value="Second">Second</DropdownMenuRadioItem>
                                                 <DropdownMenuRadioItem value="Third">Third</DropdownMenuRadioItem>
@@ -244,8 +307,8 @@ const Hackathon = () => {
                                     <Label>Full Name</Label>
                                     <Input
                                         placeholder="Enter your name here"
-                                        value = {members.member2.name}
-                                        onChange = {(e) => handleMemberChange("member2","name",e.target.value)}
+                                        value={members.member2.name}
+                                        onChange={(e) => handleMemberChange("member2", "name", e.target.value)}
                                         type="text"
                                     />
                                 </div>
@@ -254,7 +317,7 @@ const Hackathon = () => {
                                     <Input
                                         placeholder="Email here"
                                         value={members.member2.email}
-                                        onChange={(e) => handleMemberChange("member2", "email",e.target.value)}
+                                        onChange={(e) => handleMemberChange("member2", "email", e.target.value)}
                                         type="email"
                                     />
                                 </div>
@@ -282,7 +345,7 @@ const Hackathon = () => {
 
                                         </DropdownMenuTrigger>
                                         <DropdownMenuContent className="w-56 bg-black border border-gray-300">
-                                            <DropdownMenuRadioGroup value={members.member2.faculty} onValueChange={(value)=> handleMemberChange("member2", "faculty", value)} className="bg-black hover:bg-black  text-gray-300">
+                                            <DropdownMenuRadioGroup value={members.member2.faculty} onValueChange={(value) => handleMemberChange("member2", "faculty", value)} className="bg-black hover:bg-black  text-gray-300">
                                                 <DropdownMenuRadioItem value="BIM">BIM</DropdownMenuRadioItem>
                                                 <DropdownMenuRadioItem value="BIT">BIT</DropdownMenuRadioItem>
                                                 <DropdownMenuRadioItem value="BBA">BBA</DropdownMenuRadioItem>
@@ -299,7 +362,7 @@ const Hackathon = () => {
                                     <DropdownMenu>
                                         <DropdownMenuTrigger asChild>
                                             <Button variant="outline" className="relative">
-                                                {members.member2.semester && members.member2.semester?
+                                                {members.member2.semester && members.member2.semester ?
                                                     <div className='absolute left-3'>{members.member2.semester}</div> :
                                                     (
                                                         <h1 className='flex'> Select Semester <ChevronDown /></h1>
@@ -308,7 +371,7 @@ const Hackathon = () => {
 
                                         </DropdownMenuTrigger>
                                         <DropdownMenuContent className="w-56 bg-black border border-gray-300">
-                                            <DropdownMenuRadioGroup value={members.member2.semester} onValueChange={(value) => handleMemberChange("member2", "semester",value)} className="bg-black hover:bg-black  text-gray-300">
+                                            <DropdownMenuRadioGroup value={members.member2.semester} onValueChange={(value) => handleMemberChange("member2", "semester", value)} className="bg-black hover:bg-black  text-gray-300">
                                                 <DropdownMenuRadioItem value="First">First</DropdownMenuRadioItem>
                                                 <DropdownMenuRadioItem value="Second">Second</DropdownMenuRadioItem>
                                                 <DropdownMenuRadioItem value="Third">Third</DropdownMenuRadioItem>
@@ -331,8 +394,8 @@ const Hackathon = () => {
                                     <Label>Full Name</Label>
                                     <Input
                                         placeholder="Enter your name here"
-                                        value = {members.member3.name}
-                                        onChange = {(e) => handleMemberChange("member3","name",e.target.value)}
+                                        value={members.member3.name}
+                                        onChange={(e) => handleMemberChange("member3", "name", e.target.value)}
                                         type="text"
                                     />
                                 </div>
@@ -341,7 +404,7 @@ const Hackathon = () => {
                                     <Input
                                         placeholder="Email here"
                                         value={members.member3.email}
-                                        onChange={(e) => handleMemberChange("member3", "email",e.target.value)}
+                                        onChange={(e) => handleMemberChange("member3", "email", e.target.value)}
                                         type="email"
                                     />
                                 </div>
@@ -369,7 +432,7 @@ const Hackathon = () => {
 
                                         </DropdownMenuTrigger>
                                         <DropdownMenuContent className="w-56 bg-black border border-gray-300">
-                                            <DropdownMenuRadioGroup value={members.member3.faculty} onValueChange={(value)=> handleMemberChange("member3", "faculty", value)} className="bg-black hover:bg-black  text-gray-300">
+                                            <DropdownMenuRadioGroup value={members.member3.faculty} onValueChange={(value) => handleMemberChange("member3", "faculty", value)} className="bg-black hover:bg-black  text-gray-300">
                                                 <DropdownMenuRadioItem value="BIM">BIM</DropdownMenuRadioItem>
                                                 <DropdownMenuRadioItem value="BIT">BIT</DropdownMenuRadioItem>
                                                 <DropdownMenuRadioItem value="BBA">BBA</DropdownMenuRadioItem>
@@ -386,7 +449,7 @@ const Hackathon = () => {
                                     <DropdownMenu>
                                         <DropdownMenuTrigger asChild>
                                             <Button variant="outline" className="relative">
-                                                {members.member3.semester && members.member3.semester?
+                                                {members.member3.semester && members.member3.semester ?
                                                     <div className='absolute left-3'>{members.member3.semester}</div> :
                                                     (
                                                         <h1 className='flex'> Select Semester <ChevronDown /></h1>
@@ -418,8 +481,8 @@ const Hackathon = () => {
                                     <Label>Full Name</Label>
                                     <Input
                                         placeholder="Enter your name here"
-                                        value = {members.member4.name}
-                                        onChange = {(e) => handleMemberChange("member4","name",e.target.value)}
+                                        value={members.member4.name}
+                                        onChange={(e) => handleMemberChange("member4", "name", e.target.value)}
                                         type="text"
                                     />
                                 </div>
@@ -428,7 +491,7 @@ const Hackathon = () => {
                                     <Input
                                         placeholder="Email here"
                                         value={members.member4.email}
-                                        onChange={(e) => handleMemberChange("member4", "email",e.target.value)}
+                                        onChange={(e) => handleMemberChange("member4", "email", e.target.value)}
                                         type="email"
                                     />
                                 </div>
@@ -456,7 +519,7 @@ const Hackathon = () => {
 
                                         </DropdownMenuTrigger>
                                         <DropdownMenuContent className="w-56 bg-black border border-gray-300">
-                                            <DropdownMenuRadioGroup value={members.member4.faculty} onValueChange={(value)=> handleMemberChange("member4", "faculty", value)} className="bg-black hover:bg-black  text-gray-300">
+                                            <DropdownMenuRadioGroup value={members.member4.faculty} onValueChange={(value) => handleMemberChange("member4", "faculty", value)} className="bg-black hover:bg-black  text-gray-300">
                                                 <DropdownMenuRadioItem value="BIM">BIM</DropdownMenuRadioItem>
                                                 <DropdownMenuRadioItem value="BIT">BIT</DropdownMenuRadioItem>
                                                 <DropdownMenuRadioItem value="BBA">BBA</DropdownMenuRadioItem>
@@ -473,7 +536,7 @@ const Hackathon = () => {
                                     <DropdownMenu>
                                         <DropdownMenuTrigger asChild>
                                             <Button variant="outline" className="relative">
-                                                {members.member4.semester && members.member4.semester?
+                                                {members.member4.semester && members.member4.semester ?
                                                     <div className='absolute left-3'>{members.member4.semester}</div> :
                                                     (
                                                         <h1 className='flex'> Select Semester <ChevronDown /></h1>
@@ -482,7 +545,7 @@ const Hackathon = () => {
 
                                         </DropdownMenuTrigger>
                                         <DropdownMenuContent className="w-56 bg-black border border-gray-300">
-                                            <DropdownMenuRadioGroup value={members.member4.semester} onValueChange={(value) => handleMemberChange("member4", "semester",value)} className="bg-black hover:bg-black  text-gray-300">
+                                            <DropdownMenuRadioGroup value={members.member4.semester} onValueChange={(value) => handleMemberChange("member4", "semester", value)} className="bg-black hover:bg-black  text-gray-300">
                                                 <DropdownMenuRadioItem value="First">First</DropdownMenuRadioItem>
                                                 <DropdownMenuRadioItem value="Second">Second</DropdownMenuRadioItem>
                                                 <DropdownMenuRadioItem value="Third">Third</DropdownMenuRadioItem>
@@ -540,7 +603,7 @@ const Hackathon = () => {
                             </div>
                             <div className="text-gray-400">
                                 <ul className="space-y-3 list-disc list-inside">
-                                    <li>Team size: 3 to 5 members per team</li>
+                                    <li>Team size: 2 to 4 members per team</li>
                                     <li>Duration: 48 hours (non-stop coding)</li>
                                     <li>Build from scratch – no pre-written code or reused projects allowed</li>
                                     <li>Projects must follow the given theme or problem statement</li>
