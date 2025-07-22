@@ -2,7 +2,7 @@ import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
 import { ChevronDown, Code, MoveLeft } from 'lucide-react'
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import {
     DropdownMenu,
@@ -13,6 +13,7 @@ import {
 } from "@/components/ui/dropdown-menu"
 import toast from 'react-hot-toast'
 import axios from 'axios'
+import { Spinner } from '@/components/ui/spinner'
 
 const Codewar = () => {
     const navigate = useNavigate();
@@ -22,24 +23,29 @@ const Codewar = () => {
     const [email, setEmail] = useState('');
     const [id, setId] = useState('');
     const [contact, setContact] = useState('');
-
+    const [loading, setLoading] = useState(false);
 
     const handleCheck = async () => {
+        setLoading(true);
         //validation logics
         if (!name || !semester || !faculty || !email || !id) {
-            return toast.error("All fields must be filled");
+            toast.error("All fields must be filled");
+            return setLoading(false);
         }
         const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/
         if (!emailRegex.test(email)) {
-            return toast.error("Invalid email format.");
+            toast.error("Invalid email format.");
+            return setLoading(false);
         }
         const idRegex = /^[0-9]{4}$/
         if (!idRegex.test(id)) {
-            return toast.error("Invalid id.")
+            toast.error("Invalid id.")
+            return setLoading(false);
         }
 
         //call backend api
-        const res = await axios.post(`${import.meta.env.VITE_BACKENDAPI}/codewar`, { name, semester, faculty, email, id });
+        const res = await axios.post(`${import.meta.env.VITE_BACKENDAPI}/codewar`, { name, semester, faculty, email, id, contact });
+        setLoading(false);
 
         if (!res.data.success) {
             toast.error(res.data.message);
@@ -49,7 +55,13 @@ const Codewar = () => {
         navigate('/successfull_registration');
     }
     return (
-        <div>
+        <div >
+            {loading && (
+                <div className="fixed top-0 left-0 w-full h-full bg-black/20 backdrop-blur-sm z-[1000] flex items-center justify-center">
+                    <Spinner />
+                </div>
+            )}
+
             <div className="fixed inset-0 pointer-events-none z-50 overflow-hidden">
                 <div className="fixed inset-0 pointer-events-none z-50 overflow-hidden">
                     <span className="dot bg-green-400" style={{ top: '10%', left: '15%', width: '5px', height: '5px' }}></span>
@@ -77,8 +89,6 @@ const Codewar = () => {
                     <p className='text-gray-300 font-medium'>Individual Programming Competetion</p>
                 </div>
 
-
-
                 <div className='flex justify-center space-x-5 space-y-5 flex-wrap w-full'>
                     {/* forms starts from here */}
 
@@ -88,7 +98,7 @@ const Codewar = () => {
                             <div className='grid gap-2'>
                                 <Label>Full Name</Label>
                                 <Input
-                                    placeholder="Enter your name here"
+                                    placeholder="Jhon Doe"
                                     value={name}
                                     onChange={(e) => setName(e.target.value)}
                                     type="text"
@@ -98,7 +108,7 @@ const Codewar = () => {
                             <div className='grid gap-2'>
                                 <Label>Email</Label>
                                 <Input
-                                    placeholder="Email here"
+                                    placeholder="jhondoe@gmail.com"
                                     value={email}
                                     onChange={(e) => setEmail(e.target.value)}
                                     type="email"
@@ -108,7 +118,7 @@ const Codewar = () => {
                             <div className='grid gap-2'>
                                 <Label>Contact</Label>
                                 <Input
-                                    placeholder="Contact no here"
+                                    placeholder="98********"
                                     value={contact}
                                     onChange={(e) => setContact(e.target.value)}
                                     type="text"
@@ -183,12 +193,14 @@ const Codewar = () => {
 
 
 
-                            <Button onClick={() => handleCheck()} >Check Details</Button>
+                            <Button onClick={() => handleCheck()} >Submit</Button>
 
                             {/* notes */}
                             <div className='mt-8 text-gray-400'>
                                 <h1 className='text-lg'>Note:</h1>
-                                <p>Enter valid contact and confirm the submission as all the information is circulate through contact only. One email is only liable for one registration. Choose your semester and faculty wisely .Lastly id no is the id provided by the college.</p>
+                                <p>Enter valid contact and confirm the submission as all the information is circulate through
+                                    contact only. One email is only liable for one registration. Choose your semester and faculty
+                                    wisely . Lastly id no is the id provided by the college.</p>
                             </div>
                         </div>
                         <div className='w-80 p-5  md:w-100 lg:w-120 shadow-[0_0_5px] m-5 rounded-lg space-y-2'>
@@ -222,7 +234,7 @@ const Codewar = () => {
                             <h1 className="text-2xl gradientEffect ">Rules & Regulations</h1>
                         </div>
                         <div className="text-gray-400">
-                            <ol class="list-decimal pl-5 space-y-1 text-base leading-relaxed">
+                            <ol className="list-decimal pl-5 space-y-1 text-base leading-relaxed">
                                 <li><strong>Venue:</strong> Bachelor’s computer lab</li>
                                 <li><strong>Date & Time:</strong> 21st Shrawan at 9 A.M</li>
                                 <li><strong>Platform:</strong> HackerRank</li>
@@ -243,7 +255,7 @@ const Codewar = () => {
                                 <li>Participants will use the computers provided in the lab</li>
                                 <li>If any technical issues occur, the lost time will be compensated</li>
                                 <li><strong>Disqualification Criteria:</strong>
-                                    <ul class="list-disc pl-6 mt-1 space-y-1">
+                                    <ul className="list-disc pl-6 mt-1 space-y-1">
                                         <li>Plagiarism detection</li>
                                         <li>AI-generated code, external help, or discussing solutions</li>
                                         <li>Submitting someone else's work</li>

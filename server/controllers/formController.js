@@ -6,9 +6,9 @@ const { codewarModel, graphicdesigningModel, hackathonModel } = require("../mode
 //controller for codewar form submission
 const codewarController = async (req, res) => {
     try {
-        const { email, id, name, semester, faculty } = req.body;
+        const { email, id, name, semester, faculty, contact } = req.body;
 
-        if (!name || !semester || !faculty || !email || !id) {
+        if (!name || !semester || !faculty || !email || !id ||!contact ) {
             return res.send({
                 success: false,
                 message: "All fields must be filled"
@@ -39,7 +39,7 @@ const codewarController = async (req, res) => {
             })
         }
         //send to database for record
-        const register = await new codewarModel({ email, id, name, semester, faculty }).save();
+        const register = await new codewarModel({ email, id, name, semester, faculty, contact }).save();
         if (!register) {
             return res.send({
                 success: false,
@@ -65,10 +65,10 @@ const codewarController = async (req, res) => {
 //controller for graphic designing  
 const graphicDesigningController = async (req, res) => {
     try {
-        const { email, id, name, semester, faculty } = req.body;
+        const { email, id, name, semester, faculty, contact } = req.body;
 
 
-        if (!name || !semester || !faculty || !email || !id) {
+        if (!name || !semester || !faculty || !email || !id || !contact) {
             return res.send({
                 success: false,
                 message: "All fields must be filled"
@@ -99,7 +99,7 @@ const graphicDesigningController = async (req, res) => {
             })
         }
         //send to database for record
-        const register = await new graphicdesigningModel({ email, id, name, semester, faculty }).save();
+        const register = await new graphicdesigningModel({ email, id, name, semester, faculty, contact }).save();
         if (!register) {
             return res.send({
                 success: false,

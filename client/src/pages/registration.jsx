@@ -36,7 +36,7 @@ const Registration = () => {
                     <p className='text-gray-400 text-center pb-5 group-hover:text-gray-300'> 48-hour team challenge to build innovative solutions</p>
                     <div className="space-y-2 mb-6  text-gray-400">
                         <p>• Team Competition (2-4 members)</p>
-                        <p>• 48 Hours Duration</p>
+                        <p>• 3 days Duration</p>
                         <p>• Innovation & Creativity</p>
                         <p>• Mentorship Available</p>
                     </div>
@@ -48,11 +48,11 @@ const Registration = () => {
                     <p className='text-gray-400 text-center pb-10 group-hover:text-gray-300 '> Showcase your creativity and design skills</p>
                     <div className="space-y-2 mb-6  text-gray-400">
                         <p>• Individual Competition</p>
-                        <p>• 4 Hours Duration</p>
+                        <p>• 6 Hours Duration</p>
                         <p>• Creative Freedom</p>
                         <p>• Professional Judging</p>
                     </div>
-                     <Button className="shadow-none hover:scale-105 ease-in-out duration-200" onClick={()=> navigate('/graphic-designing')}>Register for UI/UX</Button>
+                     <Button className="shadow-none hover:scale-105 ease-in-out duration-200" onClick={()=> navigate('/ui-ux')}>Register for UI/UX</Button>
                 </div>
             </div>
         </div>

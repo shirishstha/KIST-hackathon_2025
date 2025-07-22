@@ -30,7 +30,7 @@ function App() {
         <Route path="/registration" element={<Registration />} />
         <Route path="/codewar" element={<Codewar />} />
         <Route path="/hackathon" element={<Hackathon />} />
-        <Route path="/graphic-designing" element={<GraphicDesigning />} />
+        <Route path="/ui-ux" element={<GraphicDesigning />} />
         <Route path="/successfull_registration" element={<SuccessfullRegistration />} />
 
         <Route path="*" element={<PageNotFound />} />

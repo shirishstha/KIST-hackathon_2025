@@ -13,6 +13,7 @@ import {
 } from "@/components/ui/dropdown-menu"
 import toast from 'react-hot-toast'
 import axios from 'axios'
+import { Spinner } from '@/components/ui/spinner'
 
 const GraphicDesigning = () => {
     const navigate = useNavigate();
@@ -22,23 +23,29 @@ const GraphicDesigning = () => {
     const [email, setEmail] = useState('');
     const [id, setId] = useState('');
     const [contact, setContact] = useState('');
+    const [loading, setLoading] = useState('');
 
 
     const handleCheck = async () => {
+        setLoading(true);
         //validations
         if (!name || !semester || !faculty || !email || !id) {
-            return toast.error("All fields must be filled");
+            toast.error("All fields must be filled");
+            return setLoading(false);
         }
         const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/
         if (!emailRegex.test(email)) {
-            return toast.error("Invalid email format.");
+            toast.error("Invalid email format.");
+            return setLoading(false);
         }
         const idRegex = /^[0-9]{4}$/
         if (!idRegex.test(id)) {
-            return toast.error("Invalid id.")
+            toast.error("Invalid id.")
+            return setLoading(false);
         }
 
-        const res = await axios.post(`${import.meta.env.VITE_BACKENDAPI}/graphicdesigning`, { name, semester, faculty, email, id });
+        const res = await axios.post(`${import.meta.env.VITE_BACKENDAPI}/graphicdesigning`, { name, semester, faculty, email, id, contact });
+        setLoading(false);
 
         if (!res.data.success) {
             toast.error(res.data.message);
@@ -49,6 +56,11 @@ const GraphicDesigning = () => {
     }
     return (
         <div>
+            {loading && (
+                <div className="fixed top-0 left-0 w-full h-full bg-black/20 backdrop-blur-sm z-[1000] flex items-center justify-center">
+                    <Spinner />
+                </div>
+            )}
             <div className="fixed inset-0 pointer-events-none z-50 overflow-hidden">
                 <div className="fixed inset-0 pointer-events-none z-50 overflow-hidden">
                     <span className="dot bg-green-400" style={{ top: '10%', left: '15%', width: '5px', height: '5px' }}></span>
@@ -78,15 +90,15 @@ const GraphicDesigning = () => {
 
 
 
-                <div className='flex justify-center space-x-20 space-y-5 flex-wrap '>
+                <div className='flex justify-center space-x-20 space-y-5 flex-wrap w-full '>
                     {/* forms starts from here */}
                     <div className='m-0'>
-                        <div className='shadow-[0_0_5px]  p-5 w-120 px-10 space-y-5 rounded-lg m-5 '>
+                        <div className='shadow-[0_0_5px]  p-5 w-80 md:100 lg:w-120 px-10 space-y-5 rounded-lg m-5 '>
                             <h1 className='text-2xl font-medium gradientEffect'>Registration Form</h1>
                             <div className='grid gap-2'>
                                 <Label>Full Name</Label>
                                 <Input
-                                    placeholder="Enter your name here"
+                                    placeholder="Jhon Doe"
                                     value={name}
                                     onChange={(e) => setName(e.target.value)}
                                     type="text"
@@ -96,7 +108,7 @@ const GraphicDesigning = () => {
                             <div className='grid gap-2'>
                                 <Label>Email</Label>
                                 <Input
-                                    placeholder="Email here"
+                                    placeholder="jhondoe@gmail.com"
                                     value={email}
                                     onChange={(e) => setEmail(e.target.value)}
                                     type="email"
@@ -106,7 +118,7 @@ const GraphicDesigning = () => {
                             <div className='grid gap-2'>
                                 <Label>Contact</Label>
                                 <Input
-                                    placeholder="Contact no here"
+                                    placeholder="98********"
                                     value={contact}
                                     onChange={(e) => setContact(e.target.value)}
                                     type="text"
@@ -181,7 +193,7 @@ const GraphicDesigning = () => {
 
 
 
-                            <Button onClick={() => handleCheck()} >Check Details</Button>
+                            <Button onClick={() => handleCheck()} >Submit</Button>
 
                             {/* notes */}
                             <div className='mt-8 text-gray-400'>
@@ -219,15 +231,33 @@ const GraphicDesigning = () => {
                             <h1 className="text-2xl gradientEffect ">Rules & Regulations</h1>
                         </div>
                         <div className="text-gray-400">
-                            <ul className="space-y-3 list-disc list-inside">
-                                <li>Individual participation only - no team collaboration allowed</li>
-                                <li>Use of internet for documentation is permitted</li>
-                                <li>Ranking will be based on number of problems solved and time taken</li>
-                                <li>In case of ties, the participant with faster submission time wins</li>
-                                <li>Any form of cheating or plagiarism will result in immediate disqualification</li>
-                                <li>Organizers' decision will be final in case of disputes</li>
-                                <li>Participants must be present 30 minutes before the competition starts</li>
-                            </ul>
+                            <ol class="list-decimal pl-5 space-y-1">
+                                <li><strong>Venue:</strong> Bachelor’s computer lab</li>
+                                <li><strong>Date & Time:</strong> 22nd Shrawan at 10 AM</li>
+                                <li><strong>Platform:</strong> Figma</li>
+                                <li><strong>Eligibility:</strong> Class 12 to Bachelor’s students (only if form is submitted)</li>
+                                <li>Participants can use their own Figma account</li>
+                                <li>Individual competition</li>
+                                <li><strong>Total Time:</strong> 6 hours</li>
+                                <li><strong>Theme:</strong> Will be released on the spot during the competition</li>
+                                <li>Breaks allowed during the competition only if required</li>
+                                <li>Participants must arrive at least 10 minutes before the competition</li>
+                                <li><strong>NO PLAGIARISM</strong></li>
+                                <li>Multiple accounts are not allowed</li>
+                                <li>Participants will use the computers provided in the lab</li>
+                                <li>If any technical issues occur, the lost time will be compensated</li>
+                                <li><strong>Disqualification Criteria:</strong>
+                                    <ul class="list-disc pl-5 mt-1">
+                                        <li>Plagiarism detection</li>
+                                        <li>AI-generated templates and external help</li>
+                                        <li>Submitting someone else's work</li>
+                                        <li>Leaving the competition without submitting any design</li>
+                                        <li>Disrupting the competition in any way</li>
+                                    </ul>
+                                </li>
+                            </ol>
+
+
                         </div>
                     </div>
                 </div>

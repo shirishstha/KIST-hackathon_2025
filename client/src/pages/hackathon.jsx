@@ -14,9 +14,11 @@ import {
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import toast from 'react-hot-toast'
 import axios from 'axios'
+import { Spinner } from '@/components/ui/spinner'
 
 const Hackathon = () => {
     const navigate = useNavigate();
+    const [loading, setLoading] = useState(false);
 
     const [team, setTeam] = useState({
         name: "",
@@ -111,17 +113,19 @@ const Hackathon = () => {
     }
 
     const handleCheck = async () => {
+        setLoading(true);
         //team validation
         const validTeam = validateTeam();
-        if (!validTeam) return;
-
+        if (!validTeam) {
+            return setLoading(false);
+        }
         //members validation
         const { isValid, errors } = validateMembers();
         if (!isValid) {
             errors.forEach(error => {
                 toast.error(error);
             });
-            return;
+            return setLoading(false);
         }
 
         //filtering empty members
@@ -132,6 +136,8 @@ const Hackathon = () => {
         //after successfull validation sending data to backend
 
         const res = await axios.post(`${import.meta.env.VITE_BACKENDAPI}/hackathon`, { team, members: cleanedMembers });
+        setLoading(false);
+
         if (!res.data.success) {
             return toast.error(res.data.message);
         }
@@ -142,6 +148,11 @@ const Hackathon = () => {
     }
     return (
         <div>
+            {loading && (
+                <div className="fixed top-0 left-0 w-full h-full bg-black/20 backdrop-blur-sm z-[1000] flex items-center justify-center">
+                    <Spinner />
+                </div>
+            )}
             <div className="fixed inset-0 pointer-events-none z-50 overflow-hidden">
                 <div className="fixed inset-0 pointer-events-none z-50 overflow-hidden">
                     <span className="dot bg-green-400" style={{ top: '10%', left: '15%', width: '5px', height: '5px' }}></span>
@@ -243,7 +254,7 @@ const Hackathon = () => {
                                     <div className='grid gap-2'>
                                         <Label>Full Name</Label>
                                         <Input
-                                            placeholder="Enter your name here"
+                                            placeholder="Member1"
                                             value={members.member1.name}
                                             onChange={(e) => handleMemberChange("member1", "name", e.target.value)}
                                             type="text"
@@ -252,7 +263,7 @@ const Hackathon = () => {
                                     <div className='grid gap-2'>
                                         <Label>Email</Label>
                                         <Input
-                                            placeholder="Email here"
+                                            placeholder="member1@gmail.com"
                                             value={members.member1.email}
                                             onChange={(e) => handleMemberChange("member1", "email", e.target.value)}
                                             type="email"
@@ -330,7 +341,7 @@ const Hackathon = () => {
                                     <div className='grid gap-2'>
                                         <Label>Full Name</Label>
                                         <Input
-                                            placeholder="Enter your name here"
+                                            placeholder="member2"
                                             value={members.member2.name}
                                             onChange={(e) => handleMemberChange("member2", "name", e.target.value)}
                                             type="text"
@@ -339,7 +350,7 @@ const Hackathon = () => {
                                     <div className='grid gap-2'>
                                         <Label>Email</Label>
                                         <Input
-                                            placeholder="Email here"
+                                            placeholder="member2@gmail.com"
                                             value={members.member2.email}
                                             onChange={(e) => handleMemberChange("member2", "email", e.target.value)}
                                             type="email"
@@ -417,7 +428,7 @@ const Hackathon = () => {
                                     <div className='grid gap-2'>
                                         <Label>Full Name</Label>
                                         <Input
-                                            placeholder="Enter your name here"
+                                            placeholder="Member3"
                                             value={members.member3.name}
                                             onChange={(e) => handleMemberChange("member3", "name", e.target.value)}
                                             type="text"
@@ -426,7 +437,7 @@ const Hackathon = () => {
                                     <div className='grid gap-2'>
                                         <Label>Email</Label>
                                         <Input
-                                            placeholder="Email here"
+                                            placeholder="member3@gmail.com"
                                             value={members.member3.email}
                                             onChange={(e) => handleMemberChange("member3", "email", e.target.value)}
                                             type="email"
@@ -504,7 +515,7 @@ const Hackathon = () => {
                                     <div className='grid gap-2'>
                                         <Label>Full Name</Label>
                                         <Input
-                                            placeholder="Enter your name here"
+                                            placeholder="Member4"
                                             value={members.member4.name}
                                             onChange={(e) => handleMemberChange("member4", "name", e.target.value)}
                                             type="text"
@@ -513,7 +524,7 @@ const Hackathon = () => {
                                     <div className='grid gap-2'>
                                         <Label>Email</Label>
                                         <Input
-                                            placeholder="Email here"
+                                            placeholder="member4@gmail.com"
                                             value={members.member4.email}
                                             onChange={(e) => handleMemberChange("member4", "email", e.target.value)}
                                             type="email"
@@ -638,7 +649,7 @@ const Hackathon = () => {
                                 <li><strong>Venue:</strong> KIST College</li>
                                 <li><strong>Date:</strong> 6th August to 8th August 2025</li>
                                 <li><strong>Time:</strong> 8:00 AM to 6:00 PM (everyday)</li>
-                                <li>Team size: Minimum 2 and maximum 5 members.</li>
+                                <li>Team size: Minimum 2 and maximum 4 members.</li>
                                 <li>Participants should not be organizers, volunteers, judges, or sponsors.</li>
                                 <li>At least 2 members must be present at the team’s allocated stall at all times.</li>
                                 <li>Teams may seek guidance from organizers, volunteers, and sponsors.</li>

@@ -1,4 +1,5 @@
 //external modules
+const { timeStamp } = require('console');
 const mongoose = require('mongoose');
 
 const registeredMembersSchema = new mongoose.Schema({
@@ -11,7 +12,7 @@ const registeredMembersSchema = new mongoose.Schema({
     semester: String,
     id: Number,
     contact: Number
-})
+},{timestamps:true})
 
 const hackathonSchema = new mongoose.Schema({
     name: {
@@ -39,7 +40,7 @@ const hackathonSchema = new mongoose.Schema({
         id: Number,
     }]
 
-})
+},{timestamps:true})
 
 exports.codewarModel = new mongoose.model('codewar', registeredMembersSchema);
 exports.graphicdesigningModel = new mongoose.model('graphic_designing', registeredMembersSchema);
