@@ -33,7 +33,7 @@ const Codewar = () => {
         if (!emailRegex.test(email)) {
             return toast.error("Invalid email format.");
         }
-        const idRegex = /^[0-9]{4,}$/
+        const idRegex = /^[0-9]{4}$/
         if (!idRegex.test(id)) {
             return toast.error("Invalid id.")
         }
