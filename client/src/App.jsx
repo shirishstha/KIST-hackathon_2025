@@ -7,6 +7,9 @@ import Codewar from "./pages/codewar"
 import { Toaster } from 'react-hot-toast'
 import Hackathon from "./pages/hackathon"
 import GraphicDesigning from "./pages/graphicDesigning"
+import SuccessfullRegistration from "./pages/successfullRegistration"
+import ScrollToTop from "./components/scrollToTop"
+import Footer from "./components/footer"
 
 function App() {
   return (
@@ -21,16 +24,19 @@ function App() {
         }}
       />
       <MouseFollower />
+      <ScrollToTop/>
       <Routes>
         <Route path="/" element={<HomePage />} />
         <Route path="/registration" element={<Registration />} />
         <Route path="/codewar" element={<Codewar />} />
         <Route path="/hackathon" element={<Hackathon />} />
         <Route path="/graphic-designing" element={<GraphicDesigning />} />
+        <Route path="/successfull_registration" element={<SuccessfullRegistration />} />
 
         <Route path="*" element={<PageNotFound />} />
 
       </Routes>
+      <Footer/>
 
 
     </>

@@ -10,6 +10,7 @@ const registeredMembersSchema = new mongoose.Schema({
     faculty: String,
     semester: String,
     id: Number,
+    contact: Number
 })
 
 const hackathonSchema = new mongoose.Schema({
@@ -32,10 +33,7 @@ const hackathonSchema = new mongoose.Schema({
     },
     members: [{
         name: String,
-        email: {
-            type: String,
-            unique: true
-        },
+        email: String,
         faculty: String,
         semester: String,
         id: Number,

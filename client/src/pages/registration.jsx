@@ -24,7 +24,7 @@ const Registration = () => {
                     <p className='text-gray-400 text-center pb-5 group-hover:text-gray-300'> Individual coding competition to test your programming skills</p>
                     <div className="space-y-2 mb-6  text-gray-400">
                         <p>• Individual Competition</p>
-                        <p>• 3 Hours Duration</p>
+                        <p>• 2 Hours Duration</p>
                         <p>• Multiple Programming Languages</p>
                         <p>• Real-time Leaderboard</p>
                     </div>
@@ -35,7 +35,7 @@ const Registration = () => {
                     <h1 className='text-xl font-bold text-gray-300 group-hover:text-gray-200'>Hackathon</h1>
                     <p className='text-gray-400 text-center pb-5 group-hover:text-gray-300'> 48-hour team challenge to build innovative solutions</p>
                     <div className="space-y-2 mb-6  text-gray-400">
-                        <p>• Team Competition (3-5 members)</p>
+                        <p>• Team Competition (2-4 members)</p>
                         <p>• 48 Hours Duration</p>
                         <p>• Innovation & Creativity</p>
                         <p>• Mentorship Available</p>

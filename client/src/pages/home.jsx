@@ -33,7 +33,7 @@ const HomePage = () => {
                         </div>      
                     </nav>
                     <div className='flex  flex-col items-center space-y-30 sm:space-y-4 md:space-y-3 lg:space-y-4'>
-                        <h2 className='text-gray-200 p-2 border border-green-500 flex rounded-2xl hover:text-green-500 hover:border-gray-300'><Calendar className='text-green-600 mt-0.5 p-0.5 mr-2' size={18} />July 21-23,2025</h2>
+                        <h2 className='text-gray-200 p-2 border border-green-500 flex rounded-2xl hover:text-green-500 hover:border-gray-300'><Calendar className='text-green-600 mt-0.5 p-0.5 mr-2' size={18} />August 06-08,2025</h2>
                         <h1 className='text-5xl font-medium mt-5 '><span className='flex flex-col text-center'>KIST</span> <span className='font-bold bg-gradient-to-r from-lime-400 via-teal-500 to-green-600 bg-clip-text text-transparent'>HACKFEST</span> <span className='flex flex-col items-center mt-5 text-2xl'>2025</span></h1>
                         <h3 className='typing-text'>Elevate your <span className='gradientEffect'>creativity</span> with <span className='gradientEffect'>innovation.</span></h3>
                     </div>
@@ -46,7 +46,7 @@ const HomePage = () => {
                             </div>
 
                             <div className="flex flex-col items-center">
-                                <span className="text-4xl text-teal-400">70+</span>
+                                <span className="text-4xl text-teal-400">100+</span>
                                 <span className="text-sm">Participants</span>
                             </div>
 

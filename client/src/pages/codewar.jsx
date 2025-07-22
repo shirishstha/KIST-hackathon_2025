@@ -21,6 +21,7 @@ const Codewar = () => {
     const [faculty, setFaculty] = useState('');
     const [email, setEmail] = useState('');
     const [id, setId] = useState('');
+    const [contact, setContact] = useState('');
 
 
     const handleCheck = async () => {
@@ -39,12 +40,13 @@ const Codewar = () => {
 
         //call backend api
         const res = await axios.post(`${import.meta.env.VITE_BACKENDAPI}/codewar`, { name, semester, faculty, email, id });
-        
+
         if (!res.data.success) {
             toast.error(res.data.message);
             return;
         }
         toast.success(res.data.message);
+        navigate('/successfull_registration');
     }
     return (
         <div>
@@ -77,109 +79,119 @@ const Codewar = () => {
 
 
 
-                <div className='flex justify-center space-x-20 space-y-5 flex-wrap '>
+                <div className='flex justify-center space-x-5 space-y-5 flex-wrap w-full'>
                     {/* forms starts from here */}
-                    <div className='shadow-[0_0_5px]  p-5 w-120 px-10 space-y-5 rounded-lg m-5 '>
-                        <h1 className='text-2xl font-medium gradientEffect'>Registration Form</h1>
-                        <div className='grid gap-2'>
-                            <Label>Full Name</Label>
-                            <Input
-                                placeholder="Enter your name here"
-                                value={name}
-                                onChange={(e) => setName(e.target.value)}
-                                type="text"
-                                required
-                            />
+
+                    <div className='m-0 '>
+                        <div className='shadow-[0_0_5px]  p-5 w-80 md:w-100 lg:w-120 px-10 space-y-5 rounded-lg m-5 '>
+                            <h1 className='text-2xl font-medium gradientEffect'>Registration Form</h1>
+                            <div className='grid gap-2'>
+                                <Label>Full Name</Label>
+                                <Input
+                                    placeholder="Enter your name here"
+                                    value={name}
+                                    onChange={(e) => setName(e.target.value)}
+                                    type="text"
+                                    required
+                                />
+                            </div>
+                            <div className='grid gap-2'>
+                                <Label>Email</Label>
+                                <Input
+                                    placeholder="Email here"
+                                    value={email}
+                                    onChange={(e) => setEmail(e.target.value)}
+                                    type="email"
+                                    required
+                                />
+                            </div>
+                            <div className='grid gap-2'>
+                                <Label>Contact</Label>
+                                <Input
+                                    placeholder="Contact no here"
+                                    value={contact}
+                                    onChange={(e) => setContact(e.target.value)}
+                                    type="text"
+                                    required
+                                />
+                            </div>
+                            <div className='grid gap-2'>
+                                <Label>Id no.</Label>
+                                <Input
+                                    placeholder="eg:6060"
+                                    value={id}
+                                    onChange={(e) => setId(e.target.value)}
+                                    type="text"
+                                    required
+                                />
+                            </div>
+
+                            <div className='grid gap-2'>
+                                <Label>Faculty</Label>
+                                <DropdownMenu>
+                                    <DropdownMenuTrigger asChild>
+                                        <Button variant="outline" className="relative">
+                                            {faculty && faculty ?
+                                                <div className='absolute left-3'>{faculty}</div> :
+                                                (
+                                                    <h1 className='flex'> Choose your Faculty <ChevronDown className='mt-1' /></h1>
+                                                )}
+                                        </Button>
+
+                                    </DropdownMenuTrigger>
+                                    <DropdownMenuContent className="w-56 bg-black border border-gray-300">
+                                        <DropdownMenuRadioGroup value={faculty} onValueChange={setFaculty} className="bg-black hover:bg-black  text-gray-300">
+                                            <DropdownMenuRadioItem value="BIM">BIM</DropdownMenuRadioItem>
+                                            <DropdownMenuRadioItem value="BIT">BIT</DropdownMenuRadioItem>
+                                            <DropdownMenuRadioItem value="BBA">BBA</DropdownMenuRadioItem>
+                                            <DropdownMenuRadioItem value="BSC">BSC</DropdownMenuRadioItem>
+                                            <DropdownMenuRadioItem value="+2">+2</DropdownMenuRadioItem>
+                                        </DropdownMenuRadioGroup>
+                                    </DropdownMenuContent>
+                                </DropdownMenu>
+                            </div>
+
+                            <div className='grid gap-2'>
+                                <Label>Semester</Label>
+                                <p className='text-xs text-gray-400'>*Choose not applicable option for +2</p>
+                                <DropdownMenu>
+                                    <DropdownMenuTrigger asChild>
+                                        <Button variant="outline" className="relative">
+                                            {semester && semester ?
+                                                <div className='absolute left-3'>{semester}</div> :
+                                                (
+                                                    <h1 className='flex'> Select Semester <ChevronDown /></h1>
+                                                )}
+                                        </Button>
+
+                                    </DropdownMenuTrigger>
+                                    <DropdownMenuContent className="w-56 bg-black border border-gray-300">
+                                        <DropdownMenuRadioGroup value={semester} onValueChange={setSemester} className="bg-black hover:bg-black  text-gray-300">
+                                            <DropdownMenuRadioItem value="First">First</DropdownMenuRadioItem>
+                                            <DropdownMenuRadioItem value="Second">Second</DropdownMenuRadioItem>
+                                            <DropdownMenuRadioItem value="Third">Third</DropdownMenuRadioItem>
+                                            <DropdownMenuRadioItem value="Fourth">Fourth</DropdownMenuRadioItem>
+                                            <DropdownMenuRadioItem value="Fifth">Fifth</DropdownMenuRadioItem>
+                                            <DropdownMenuRadioItem value="Sixth">Sixth</DropdownMenuRadioItem>
+                                            <DropdownMenuRadioItem value="Seventh">Seventh</DropdownMenuRadioItem>
+                                            <DropdownMenuRadioItem value="Eighth">Eighth</DropdownMenuRadioItem>
+                                            <DropdownMenuRadioItem value="Not Applicable">Not Applicable</DropdownMenuRadioItem>
+                                        </DropdownMenuRadioGroup>
+                                    </DropdownMenuContent>
+                                </DropdownMenu>
+                            </div>
+
+
+
+                            <Button onClick={() => handleCheck()} >Check Details</Button>
+
+                            {/* notes */}
+                            <div className='mt-8 text-gray-400'>
+                                <h1 className='text-lg'>Note:</h1>
+                                <p>Enter valid contact and confirm the submission as all the information is circulate through contact only. One email is only liable for one registration. Choose your semester and faculty wisely .Lastly id no is the id provided by the college.</p>
+                            </div>
                         </div>
-                        <div className='grid gap-2'>
-                            <Label>Email</Label>
-                            <Input
-                                placeholder="Email here"
-                                value={email}
-                                onChange={(e) => setEmail(e.target.value)}
-                                type="email"
-                                required
-                            />
-                        </div>
-                        <div className='grid gap-2'>
-                            <Label>Id no.</Label>
-                            <Input
-                                placeholder="eg:6060"
-                                value={id}
-                                onChange={(e) => setId(e.target.value)}
-                                type="text"
-                                required
-                            />
-                        </div>
-
-                        <div className='grid gap-2'>
-                            <Label>Faculty</Label>
-                            <DropdownMenu>
-                                <DropdownMenuTrigger asChild>
-                                    <Button variant="outline" className="relative">
-                                        {faculty && faculty ?
-                                            <div className='absolute left-3'>{faculty}</div> :
-                                            (
-                                                <h1 className='flex'> Choose your Faculty <ChevronDown className='mt-1' /></h1>
-                                            )}
-                                    </Button>
-
-                                </DropdownMenuTrigger>
-                                <DropdownMenuContent className="w-56 bg-black border border-gray-300">
-                                    <DropdownMenuRadioGroup value={faculty} onValueChange={setFaculty} className="bg-black hover:bg-black  text-gray-300">
-                                        <DropdownMenuRadioItem value="BIM">BIM</DropdownMenuRadioItem>
-                                        <DropdownMenuRadioItem value="BIT">BIT</DropdownMenuRadioItem>
-                                        <DropdownMenuRadioItem value="BBA">BBA</DropdownMenuRadioItem>
-                                        <DropdownMenuRadioItem value="BSC">BSC</DropdownMenuRadioItem>
-                                        <DropdownMenuRadioItem value="+2">+2</DropdownMenuRadioItem>
-                                    </DropdownMenuRadioGroup>
-                                </DropdownMenuContent>
-                            </DropdownMenu>
-                        </div>
-
-                        <div className='grid gap-2'>
-                            <Label>Semester</Label>
-                            <p className='text-xs text-gray-400'>*Choose not applicable option for +2</p>
-                            <DropdownMenu>
-                                <DropdownMenuTrigger asChild>
-                                    <Button variant="outline" className="relative">
-                                        {semester && semester ?
-                                            <div className='absolute left-3'>{semester}</div> :
-                                            (
-                                                <h1 className='flex'> Select Semester <ChevronDown /></h1>
-                                            )}
-                                    </Button>
-
-                                </DropdownMenuTrigger>
-                                <DropdownMenuContent className="w-56 bg-black border border-gray-300">
-                                    <DropdownMenuRadioGroup value={semester} onValueChange={setSemester} className="bg-black hover:bg-black  text-gray-300">
-                                        <DropdownMenuRadioItem value="First">First</DropdownMenuRadioItem>
-                                        <DropdownMenuRadioItem value="Second">Second</DropdownMenuRadioItem>
-                                        <DropdownMenuRadioItem value="Third">Third</DropdownMenuRadioItem>
-                                        <DropdownMenuRadioItem value="Fourth">Fourth</DropdownMenuRadioItem>
-                                        <DropdownMenuRadioItem value="Fifth">Fifth</DropdownMenuRadioItem>
-                                        <DropdownMenuRadioItem value="Sixth">Sixth</DropdownMenuRadioItem>
-                                        <DropdownMenuRadioItem value="Seventh">Seventh</DropdownMenuRadioItem>
-                                        <DropdownMenuRadioItem value="Eighth">Eighth</DropdownMenuRadioItem>
-                                        <DropdownMenuRadioItem value="Not Applicable">Not Applicable</DropdownMenuRadioItem>
-                                    </DropdownMenuRadioGroup>
-                                </DropdownMenuContent>
-                            </DropdownMenu>
-                        </div>
-
-
-
-                        <Button onClick={() => handleCheck()} >Check Details</Button>
-
-                        {/* notes */}
-                        <div className='mt-8 text-gray-400'>
-                            <h1 className='text-lg'>Note:</h1>
-                            <p>Enter valid email address and confirm the submission as all the information is circulate through emails only.And one email is only liable for one registration. Choose your semester and faculty wisely .Lastly id no is the id provided by the college.</p>
-                        </div>
-
-                    </div>
-                    <div>
-                        <div className='max-w-[400px] p-5 w-80 md:w-100 lg:w-140 shadow-[0_0_5px] m-5 rounded-lg space-y-2'>
+                        <div className='w-80 p-5  md:w-100 lg:w-120 shadow-[0_0_5px] m-5 rounded-lg space-y-2'>
                             <h1 className='text-2xl font-medium gradientEffect '>About Code War</h1>
                             <div className='grid gap-2 text-gray-400'>
                                 <p>
@@ -194,32 +206,55 @@ const Codewar = () => {
                                 <div className="grid grid-cols-2 gap-4 mt-6">
                                     <div className="text-center">
                                         <h4 className="text-green-400 font-semibold">Duration</h4>
-                                        <p>3 Hours</p>
+                                        <p>2 Hours</p>
                                     </div>
                                     <div className="text-center">
                                         <h4 className="text-green-400 font-semibold">Problems</h4>
-                                        <p>8-10 Challenges</p>
+                                        <p>7 Challenges</p>
                                     </div>
                                 </div>
                             </div>
 
                         </div>
-                        <div className='max-w-[400px] p-5 w-80 md:w-100 lg:w-140 shadow-[0_0_5px] m-5 rounded-lg space-y-2'>
-                            <div>
-                                <h1 className="text-2xl gradientEffect ">Rules & Regulations</h1>
-                            </div>
-                            <div className="text-gray-400">
-                                <ul className="space-y-3 list-disc list-inside">
-                                    <li>Individual participation only - no team collaboration allowed</li>
-                                    <li>Use of internet for documentation is permitted</li>
-                                    <li>Ranking will be based on number of problems solved and time taken</li>
-                                    <li>In case of ties, the participant with faster submission time wins</li>
-                                    <li>Any form of cheating or plagiarism will result in immediate disqualification</li>
-                                    <li>Organizers' decision will be final in case of disputes</li>
-                                    <li>Participants must be present 30 minutes before the competition starts</li>
-                                </ul>
-                            </div>
+                    </div>
+                    <div className='max-w-[400px] p-5 w-80 md:w-100 lg:w-140 shadow-[0_0_5px] m-5 rounded-lg space-y-2'>
+                        <div>
+                            <h1 className="text-2xl gradientEffect ">Rules & Regulations</h1>
                         </div>
+                        <div className="text-gray-400">
+                            <ol class="list-decimal pl-5 space-y-1 text-base leading-relaxed">
+                                <li><strong>Venue:</strong> Bachelor’s computer lab</li>
+                                <li><strong>Date & Time:</strong> 21st Shrawan at 9 A.M</li>
+                                <li><strong>Platform:</strong> HackerRank</li>
+                                <li>Participants can use their own HackerRank account</li>
+                                <li><strong>Total Time:</strong> 120 minutes, divided into eight 15-minute sessions</li>
+                                <li>Problems will be released in stages (one every 15 minutes)</li>
+                                <li><strong>Total Questions:</strong> 7 questions of varying difficulty</li>
+                                <li>The last 15 minutes can be used freely by participants to review, debug, or submit solutions</li>
+                                <li>No breaks allowed during the competition. Once left, the participant cannot reenter the room except for emergency cases. They may only leave after submitting at least 1 answer.</li>
+                                <li>If no answers are submitted, the participant will be disqualified</li>
+                                <li>Participants must arrive at least 10 minutes before the competition</li>
+                                <li>Most programming languages supported by HackerRank are allowed</li>
+                                <li>Partial scores may be awarded for partially correct solutions</li>
+                                <li>Automatic scoring is handled by HackerRank based on test cases</li>
+                                <li>In case of a tie, time taken to solve problems will be considered</li>
+                                <li><strong>NO PLAGIARISM</strong></li>
+                                <li>Multiple accounts are not allowed</li>
+                                <li>Participants will use the computers provided in the lab</li>
+                                <li>If any technical issues occur, the lost time will be compensated</li>
+                                <li><strong>Disqualification Criteria:</strong>
+                                    <ul class="list-disc pl-6 mt-1 space-y-1">
+                                        <li>Plagiarism detection</li>
+                                        <li>AI-generated code, external help, or discussing solutions</li>
+                                        <li>Submitting someone else's work</li>
+                                        <li>Leaving the competition without submitting any solutions</li>
+                                        <li>Disrupting the competition in any way</li>
+                                    </ul>
+                                </li>
+                            </ol>
+
+                        </div>
+
                     </div>
                 </div>
             </div>
