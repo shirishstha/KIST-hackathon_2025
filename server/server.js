@@ -17,13 +17,13 @@ connectDB();
 
 
 // //for testing
-app.use(cors());
+// app.use(cors());
 
 // for prodution use
-// app.use(cors({
-//     origin: 'https://kisthackathon.vercel.app', //frontend url 
-//      methods: ['GET', 'POST', 'PUT', 'DELETE']
-// }));
+app.use(cors({
+  origin: ["https://kisthackfest.vercel.app"], // allow only this domain
+  credentials: true,
+}));
 
 app.use(express.json());
 
