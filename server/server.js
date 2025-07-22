@@ -15,14 +15,14 @@ const app = express();
 connectDB();
 
 
-//for testing
-app.use(cors());
+// //for testing
+// app.use(cors());
 
-//for prodution use
-// app.use(cors({
-//     origin: 'http://localhost:5173', //frontend url 
-//      methods: ['GET', 'POST', 'PUT', 'DELETE']
-// }));
+// for prodution use
+app.use(cors({
+    origin: 'https://kisthackathon.vercel.app/', //frontend url 
+     methods: ['GET', 'POST', 'PUT', 'DELETE']
+}));
 
 app.use(express.json());
 
