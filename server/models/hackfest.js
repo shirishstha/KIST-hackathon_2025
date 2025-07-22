@@ -1,5 +1,4 @@
 //external modules
-const { timeStamp } = require('console');
 const mongoose = require('mongoose');
 
 const registeredMembersSchema = new mongoose.Schema({

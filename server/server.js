@@ -6,6 +6,7 @@ const dotenv = require('dotenv');
 //local modules
 const userRouter = require('./routes/userRoutes');
 const connectDB = require('./helpers/db');
+const adminRouter = require('./routes/adminRoutes');
 
 //initialization of app
 dotenv.config();
@@ -30,6 +31,8 @@ app.use(express.json());
 app.use('/api/kisthackfest/landing',(req,res)=>{
     res.send("Your backend is running successfully");
 })
+
+app.use('/api/kisthackfest/admin',adminRouter);
 app.use('/api/kisthackfest',userRouter);
 
 const PORT = process.env.PORT;

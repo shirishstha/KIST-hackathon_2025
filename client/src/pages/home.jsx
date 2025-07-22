@@ -29,7 +29,7 @@ const HomePage = () => {
                 {/* Navigation */}
                 <nav className="flex items-center justify-between px-6 py-4 z-10 relative">
                     <img src="/mainlogo.png" alt="logo" className="h-16" />
-                    <Button>Admin Login</Button>
+                    <Button onClick={()=> navigate('/login')}>Admin Login</Button>
                 </nav>
 
                 {/* Centered Content */}

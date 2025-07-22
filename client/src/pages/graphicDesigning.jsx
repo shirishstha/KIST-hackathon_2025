@@ -33,7 +33,7 @@ const GraphicDesigning = () => {
             toast.error("All fields must be filled");
             return setLoading(false);
         }
-        const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/
+        const emailRegex = /^[a-zA-Z][a-zA-Z0-9._%+-]*[a-zA-Z0-9]@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
         if (!emailRegex.test(email)) {
             toast.error("Invalid email format.");
             return setLoading(false);
@@ -41,6 +41,11 @@ const GraphicDesigning = () => {
         const idRegex = /^[0-9]{4}$/
         if (!idRegex.test(id)) {
             toast.error("Invalid id.")
+            return setLoading(false);
+        }
+        const contactRegex = /^(98|97|96)\d{8}$/
+        if (!contactRegex.test(contact)) {
+            toast.error("Invalid contact.")
             return setLoading(false);
         }
 

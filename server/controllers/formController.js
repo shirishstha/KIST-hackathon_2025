@@ -15,7 +15,7 @@ const codewarController = async (req, res) => {
 
             })
         }
-        const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/
+        const emailRegex = /^[a-zA-Z][a-zA-Z0-9._%+-]*[a-zA-Z0-9]@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
         if (!emailRegex.test(email)) {
             return res.send({
                 success: false,
@@ -27,6 +27,13 @@ const codewarController = async (req, res) => {
             return res.send({
                 success: false,
                 message: "Invalid id."
+            })
+        }
+        const contactRegex = /^(98|97|96)\d{8}$/
+        if (!contactRegex.test(contact)) {
+           return res.send({
+                success: false,
+                message: "Invalid contact"
             })
         }
 
@@ -75,7 +82,7 @@ const graphicDesigningController = async (req, res) => {
 
             })
         }
-        const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/
+        const emailRegex = /^[a-zA-Z][a-zA-Z0-9._%+-]*[a-zA-Z0-9]@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
         if (!emailRegex.test(email)) {
             return res.send({
                 success: false,
@@ -87,6 +94,13 @@ const graphicDesigningController = async (req, res) => {
             return res.send({
                 success: false,
                 message: "Invalid id."
+            })
+        }
+         const contactRegex = /^(98|97|96)\d{8}$/
+         if (!contactRegex.test(contact)) {
+           return res.send({
+                success: false,
+                message: "Invalid contact"
             })
         }
 
@@ -126,7 +140,7 @@ const hackathonController = async (req, res) => {
     try {
         const { team, members } = req.body;
         const validateMembers = () => {
-            const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/
+            const emailRegex = /^[a-zA-Z][a-zA-Z0-9._%+-]*[a-zA-Z0-9]@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
             const idRegex = /^[0-9]{4,}$/
             const values = Object.values(members);
             let fullyValidCount = 0;
@@ -168,7 +182,7 @@ const hackathonController = async (req, res) => {
         }
 
         const validateTeam = () => {
-            const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/
+            const emailRegex = /^[a-zA-Z][a-zA-Z0-9._%+-]*[a-zA-Z0-9]@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
             const contactRegex = /^(98|97|96)\d{8}$/
 
             if (!team.email || !team.name || !team.faculty || !team.contact) {

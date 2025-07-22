@@ -3,7 +3,7 @@ import {Link} from 'react-router-dom'
 
 export default function Footer() {
   return (
-    <footer className="bg-black text-white relative overflow-hidden mt-20">
+    <footer className="bg-black text-white relative overflow-hidden mt-20 z-50">
       {/* Background decorative elements */}
       <div className="absolute inset-0 overflow-hidden">
         <div className="absolute top-10 left-20 w-2 h-2 bg-green-400 rounded-full opacity-60"></div>
@@ -60,13 +60,13 @@ export default function Footer() {
             <h3 className="text-xl font-bold text-green-400">Follow Us</h3>
             <div className="flex gap-4 md:justify-center">
               <Link
-                to="#"
+                to="https://www.facebook.com/people/kisthackfest/61578345730117/"
                 className="w-10 h-10 bg-gray-800 rounded-full flex items-center justify-center hover:bg-green-400 hover:text-black transition-colors"
               >
                 <Facebook className="w-5 h-5" />
               </Link>
               <Link
-                to="#"
+                to="https://www.instagram.com/kist.hackfest?igsh=MWd5MWN5MzNpMHVleQ%3D%3D&utm_source=qr"
                 className="w-10 h-10 bg-gray-800 rounded-full flex items-center justify-center hover:bg-green-400 hover:text-black transition-colors"
               >
                 <Instagram className="w-5 h-5" />
