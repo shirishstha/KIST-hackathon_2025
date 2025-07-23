@@ -23,15 +23,7 @@ function App() {
   const isAdminRoute = location.pathname.startsWith("/admin");
   return (
     <>
-      <Toaster
-        position="top-right"
-        toastOptions={{
-          style: {
-            background: '#333',
-            color: '#fff',
-          },
-        }}
-      />
+      <Toaster/>
       <MouseFollower />
       <ScrollToTop />
       <Routes>

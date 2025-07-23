@@ -18,7 +18,7 @@ export default function SuccessfullRegistration() {
    const navigate = useNavigate();
 
   return (
-      <div className="bg-black  mb-0 min-h-screen">
+      <div className=" mb-0 min-h-screen">
             <div className="fixed inset-0 pointer-events-none z-50 overflow-hidden">
                 <div className="fixed inset-0 pointer-events-none z-50 overflow-hidden">
                     <span className="dot bg-green-400" style={{ top: '10%', left: '15%', width: '5px', height: '5px' }}></span>
@@ -41,7 +41,7 @@ export default function SuccessfullRegistration() {
             <div className='absolute flex justify-center flex-col items-center w-full space-y-2 h-[60%] p-4 lg:p-2'>
 
                 <h1 className='text-3xl gradientEffect'>Registration Successfull</h1>
-                <p className='text-sm text-gray-400' >Your response has been registered successfully. Thankyou for registering.</p>
+                <p className='text-sm text-gray-500' >Your response has been registered successfully. Thankyou for registering.</p>
                 <Button onClick={() => navigate('/')}>Go Home</Button>
             </div>
 

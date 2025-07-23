@@ -112,10 +112,13 @@
 
 @layer base {
   body {
-    @apply bg-black text-gray-200;
+    @apply bg-white text-black;
   }
   .gradientEffect{
-    @apply font-bold bg-gradient-to-r from-green-300 to-green-600 bg-clip-text text-transparent;
+    @apply font-bold bg-gradient-to-r from-orange-500 via-indigo-700 to-orange-600 bg-clip-text text-transparent;
+  }
+  .myShadow{
+    @apply shadow-[0_-3px_6px_rgba(0,0,0,0.08),0_3px_6px_rgba(0,0,0,0.08)];
   }
 
   /* for typing effect */
@@ -136,14 +139,14 @@
     border-color: transparent;
   }
   100% {
-    border-color: #4ade80; /* green-400 */
+    border-color: #bf6122; /* green-400 */
   }
 }
 
 .typing-text {
   overflow: hidden;
   white-space: nowrap;
-  border-right: 2px solid #4ade80;
+  border-right: 2px solid #bf6122;
   width: 0;
   animation:
     typing 5s ease-in-out infinite,

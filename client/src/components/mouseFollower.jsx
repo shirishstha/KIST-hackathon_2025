@@ -15,7 +15,7 @@ const MouseFollower = () => {
 
   return (
     <div
-      className="fixed pointer-events-none w-20 h-20 blur-2xl rounded-full bg-gradient-to-tr from-green-400 via-emerald-500 to-teal-400 opacity-70 z-[1000] transition-transform duration-100 ease-out"
+      className="fixed pointer-events-none w-20 h-20 blur-2xl rounded-full bg-gradient-to-tr from-orange-200 via-orange-300 to-orange-200 opacity-70 z-[1000] transition-transform duration-100 ease-out"
       style={{
         transform: `translate(${pos.x - 20}px, ${pos.y - 20}px)`,
       }}
