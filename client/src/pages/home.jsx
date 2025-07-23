@@ -1,10 +1,44 @@
 import { Button } from '@/components/ui/button'
-import { Calendar, Code, Palette, Settings } from 'lucide-react'
-import React from 'react'
+import { Calendar, Code, Palette, Settings, X } from 'lucide-react'
+import React, { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 
 const HomePage = () => {
     const navigate = useNavigate();
+    const [timeLeft, setTimeLeft] = useState({
+        days: 0,
+        hours: 0,
+        minutes: 0,
+        seconds: 0,
+    })
+    const eventDate = new Date("2025-08-06T08:00:00").getTime();
+    const [isOpen, setIsOpen] = useState(true);
+
+    useEffect(() => {
+        const intervalId = setInterval(() => {
+            const now = new Date().getTime();
+            const distance = eventDate - now;
+
+            if (distance <= 0) {
+                clearInterval(intervalId);
+                setTimeLeft({ days: 0, hours: 0, minutes: 0, seconds: 0 })
+                return;
+            }
+
+            setTimeLeft({
+                days: Math.floor(distance / (1000 * 60 * 60 * 24)),
+                hours: Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)),
+                minutes: Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60)),
+                seconds: Math.floor((distance % (1000 * 60)) / 1000),
+            })
+
+        }, 1000);
+
+
+        return () => clearInterval(intervalId); // cleanup on unmount
+    }, [eventDate]);
+
+
 
     return (
         <div className="bg-black">
@@ -29,9 +63,89 @@ const HomePage = () => {
                 {/* Navigation */}
                 <nav className="flex items-center justify-between px-6 py-4 z-10 relative">
                     <img src="/mainlogo.png" alt="logo" className="h-16" />
-                    <Button onClick={()=> navigate('/login')}>Admin Login</Button>
+                    <div className='flex space-x-2'>
+                        <div className='shadow-[0_0_4px] shadow-green-100 rounded p-1.5 bg-gradient-to-br from-white/20 to-white/10'>{timeLeft.days}<div className='text-[10px] text-gray-400'>Days</div></div>
+                        <div className='shadow-[0_0_4px] shadow-green-100 rounded p-1.5 bg-gradient-to-br from-white/20 to-white/10 '>{timeLeft.hours}<div className='text-[10px] text-gray-400'>Hours</div></div>
+                        <div className='shadow-[0_0_4px] shadow-green-100 rounded p-1.5 bg-gradient-to-br from-white/20 to-white/10 '>{timeLeft.minutes}<div className='text-[10px] text-gray-400'>Mins</div></div>
+                        <div className='shadow-[0_0_4px] shadow-green-100 rounded p-1.5 bg-gradient-to-br from-white/20 to-white/10 '>{timeLeft.seconds}<div className='text-[10px] text-gray-400'>Secs</div></div>
+                    </div>
                 </nav>
+                {isOpen && (
+                    <div className="min-h-screen fixed w-full z-[1000]">
+                        
 
+                        {/* Blur overlay */}
+                        <div className="absolute inset-0 bg-black/30 backdrop-blur-sm z-10" />
+
+                        {/* Countdown Modal */}
+                        <div className="absolute inset-0 flex items-center justify-center p-4 z-20">
+                            <div className="relative w-full max-w-2xl">
+                                {/* Close button */}
+                                <Button
+                                    variant="ghost"
+                                    size="icon"
+                                    onClick={() => setIsOpen(false)}
+                                    className="absolute -top-4 -right-4 z-30 bg-white/10 hover:bg-white/20 text-white border border-white/20 rounded-full"
+                                >
+                                    <X className="h-4 w-4" />
+                                </Button>
+
+                                {/* Modal content */}
+                                <div className="bg-white/10 backdrop-blur-2xl rounded-3xl p-6 sm:p-8 md:p-12 border border-white/10 shadow-2xl">
+                                    <div className="text-center">
+                                        <h2 className="text-xl sm:text-2xl md:text-3xl font-bold text-white mb-2">Kist <span className='gradientEffect'>Hackfest</span> Starting Soon</h2>
+                                        <p className="text-gray-300 mb-6 sm:mb-8 md:mb-10">Get ready for something extraordinary</p>
+
+                                        {/* Countdown display */}
+                                        <div className="grid grid-cols-4 gap-2 sm:gap-4 md:gap-8">
+                                            <div className="text-center">
+                                                <div className="bg-gradient-to-br from-white/20 to-white/5 backdrop-blur-sm rounded-xl sm:rounded-2xl p-2 sm:p-4 md:p-6 border border-white/10">
+                                                    <div className="text-xl sm:text-2xl md:text-4xl lg:text-5xl font-bold text-white mb-1 sm:mb-2">
+                                                        {timeLeft.days}
+                                                    </div>
+                                                    <div className="text-[10px] sm:text-xs md:text-sm text-gray-300 uppercase tracking-wider">Days</div>
+                                                </div>
+                                            </div>
+
+                                            <div className="text-center">
+                                                <div className="bg-gradient-to-br from-white/20 to-white/5 backdrop-blur-sm rounded-xl sm:rounded-2xl p-2 sm:p-4 md:p-6 border border-white/10">
+                                                    <div className="text-xl sm:text-2xl md:text-4xl lg:text-5xl font-bold text-white mb-1 sm:mb-2">
+                                                        {timeLeft.hours}
+                                                    </div>
+                                                    <div className="text-[10px] sm:text-xs md:text-sm text-gray-300 uppercase tracking-wider">
+                                                        Hours
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div className="text-center">
+                                                <div className="bg-gradient-to-br from-white/20 to-white/5 backdrop-blur-sm rounded-xl sm:rounded-2xl p-2 sm:p-4 md:p-6 border border-white/10">
+                                                    <div className="text-xl sm:text-2xl md:text-4xl lg:text-5xl font-bold text-white mb-1 sm:mb-2">
+                                                        {timeLeft.minutes}
+                                                    </div>
+                                                    <div className="text-[10px] sm:text-xs md:text-sm text-gray-300 uppercase tracking-wider">
+                                                        Minutes
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div className="text-center">
+                                                <div className="bg-gradient-to-br from-white/20 to-white/5 backdrop-blur-sm rounded-xl sm:rounded-2xl p-2 sm:p-4 md:p-6 border border-white/10">
+                                                    <div className="text-xl sm:text-2xl md:text-4xl lg:text-5xl font-bold text-white mb-1 sm:mb-2">
+                                                        {timeLeft.seconds}
+                                                    </div>
+                                                    <div className="text-[10px] sm:text-xs md:text-sm text-gray-300 uppercase tracking-wider">
+                                                        Seconds
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                )}
                 {/* Centered Content */}
                 <div className="flex-1 flex flex-col justify-center items-center px-4 text-center space-y-6 z-10 relative">
                     <h2 className="text-gray-200 border border-green-500 rounded-2xl px-4 py-2 hover:text-green-500 hover:border-gray-300 flex items-center">
@@ -80,7 +194,7 @@ const HomePage = () => {
 
                 {/* Event Descriptions */}
                 <div className="flex flex-wrap justify-center gap-10 pt-10">
-                    <div className="shadow-[0_0_30px] hover:shadow-green-600 rounded-lg p-6 max-w-xs space-y-2 cursor-pointer" onClick={()=> navigate('/codewar')}>
+                    <div className="shadow-[0_0_30px] hover:shadow-green-600 rounded-lg p-6 max-w-xs space-y-2 cursor-pointer" onClick={() => navigate('/codewar')}>
                         <Code className="bg-green-500 h-8 w-8 p-2 rounded-lg" />
                         <h2 className="text-xl font-bold">Code War</h2>
                         <p className="text-gray-400">
@@ -90,7 +204,7 @@ const HomePage = () => {
                         </p>
                     </div>
 
-                    <div className="shadow-[0_0_30px] hover:shadow-teal-600 rounded-lg p-6 max-w-xs space-y-2 cursor-pointer" onClick={()=> navigate('/hackathon')}>
+                    <div className="shadow-[0_0_30px] hover:shadow-teal-600 rounded-lg p-6 max-w-xs space-y-2 cursor-pointer" onClick={() => navigate('/hackathon')}>
                         <Settings className="bg-teal-500 h-8 w-8 p-2 rounded-lg" />
                         <h2 className="text-xl font-bold">Hackathon</h2>
                         <p className="text-gray-400">
@@ -100,7 +214,7 @@ const HomePage = () => {
                         </p>
                     </div>
 
-                    <div className="shadow-[0_0_30px] hover:shadow-emerald-600 rounded-lg p-6 max-w-xs space-y-2 cursor-pointer" onClick={()=> navigate('/ui-ux')}>
+                    <div className="shadow-[0_0_30px] hover:shadow-emerald-600 rounded-lg p-6 max-w-xs space-y-2 cursor-pointer" onClick={() => navigate('/ui-ux')}>
                         <Palette className="bg-emerald-500 h-8 w-8 p-2 rounded-lg" />
                         <h2 className="text-xl font-bold">UI/UX</h2>
                         <p className="text-gray-400">

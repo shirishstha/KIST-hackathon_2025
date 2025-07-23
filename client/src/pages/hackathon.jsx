@@ -341,7 +341,7 @@ const Hackathon = () => {
                                     <div className='grid gap-2'>
                                         <Label>Full Name</Label>
                                         <Input
-                                            placeholder="member2"
+                                            placeholder="Member2"
                                             value={members.member2.name}
                                             onChange={(e) => handleMemberChange("member2", "name", e.target.value)}
                                             type="text"
