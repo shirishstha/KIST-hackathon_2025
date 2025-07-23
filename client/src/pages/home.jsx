@@ -40,9 +40,9 @@ const HomePage = () => {
     }, [eventDate]);
 
     useEffect(() => {
-        const flag = localStorage.getItem('isOpen');
+        const flag = sessionStorage.getItem('isOpen');
         if (flag === null) {
-            localStorage.setItem('isOpen', false);
+            sessionStorage.setItem('isOpen', false);
             setIsOpen(true);
         } else {
             setIsOpen(false); 
