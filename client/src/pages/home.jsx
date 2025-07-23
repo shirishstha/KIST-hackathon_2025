@@ -13,6 +13,7 @@ const HomePage = () => {
     })
     const eventDate = new Date("2025-08-06T08:00:00").getTime();
     const [isOpen, setIsOpen] = useState(true);
+    const [isLoading, setIsLoading] = useState(true);
 
     useEffect(() => {
         const intervalId = setInterval(() => {
@@ -35,8 +36,19 @@ const HomePage = () => {
         }, 1000);
 
 
-        return () => clearInterval(intervalId); // cleanup on unmount
+        return () => clearInterval(intervalId); 
     }, [eventDate]);
+
+    useEffect(() => {
+        const flag = localStorage.getItem('isOpen');
+        if (flag === null) {
+            localStorage.setItem('isOpen', false);
+            setIsOpen(true);
+        } else {
+            setIsOpen(false); 
+        }
+        setIsLoading(false);
+    }, []);
 
 
 
@@ -61,18 +73,32 @@ const HomePage = () => {
                 </div>
 
                 {/* Navigation */}
-                <nav className="flex items-center justify-between px-6 py-4 z-10 relative">
-                    <img src="/mainlogo.png" alt="logo" className="h-16" />
-                    <div className='flex space-x-2'>
-                        <div className='shadow-[0_0_4px] shadow-green-100 rounded p-1.5 bg-gradient-to-br from-white/20 to-white/10'>{timeLeft.days}<div className='text-[10px] text-gray-400'>Days</div></div>
-                        <div className='shadow-[0_0_4px] shadow-green-100 rounded p-1.5 bg-gradient-to-br from-white/20 to-white/10 '>{timeLeft.hours}<div className='text-[10px] text-gray-400'>Hours</div></div>
-                        <div className='shadow-[0_0_4px] shadow-green-100 rounded p-1.5 bg-gradient-to-br from-white/20 to-white/10 '>{timeLeft.minutes}<div className='text-[10px] text-gray-400'>Mins</div></div>
-                        <div className='shadow-[0_0_4px] shadow-green-100 rounded p-1.5 bg-gradient-to-br from-white/20 to-white/10 '>{timeLeft.seconds}<div className='text-[10px] text-gray-400'>Secs</div></div>
+                <nav className="flex flex-col sm:flex-row items-center justify-between px-4 sm:px-6 py-4 z-10 relative space-y-3 sm:space-y-0">
+                    <img src="/mainlogo.png" alt="logo" className="h-14 sm:h-16" />
+
+                    <div className="flex space-x-2">
+                        <div className="shadow-[0_0_4px] shadow-green-100 rounded p-1.5 bg-gradient-to-br from-white/20 to-white/10 w-12 text-center">
+                            {timeLeft.days}
+                            <div className="text-[10px] text-gray-400">Days</div>
+                        </div>
+                        <div className="shadow-[0_0_4px] shadow-green-100 rounded p-1.5 bg-gradient-to-br from-white/20 to-white/10 w-12 text-center">
+                            {timeLeft.hours}
+                            <div className="text-[10px] text-gray-400">Hours</div>
+                        </div>
+                        <div className="shadow-[0_0_4px] shadow-green-100 rounded p-1.5 bg-gradient-to-br from-white/20 to-white/10 w-12 text-center">
+                            {timeLeft.minutes}
+                            <div className="text-[10px] text-gray-400">Mins</div>
+                        </div>
+                        <div className="shadow-[0_0_4px] shadow-green-100 rounded p-1.5 bg-gradient-to-br from-white/20 to-white/10 w-12 text-center">
+                            {timeLeft.seconds}
+                            <div className="text-[10px] text-gray-400">Secs</div>
+                        </div>
                     </div>
                 </nav>
-                {isOpen && (
+
+                {!isLoading && isOpen && (
                     <div className="min-h-screen fixed w-full z-[1000]">
-                        
+
 
                         {/* Blur overlay */}
                         <div className="absolute inset-0 bg-black/30 backdrop-blur-sm z-10" />
