@@ -112,10 +112,10 @@
 
 @layer base {
   body {
-    @apply bg-white text-black;
+    @apply bg-gradient-to-br from-slate-50 via-white to-purple-50 text-black;
   }
   .gradientEffect{
-    @apply font-bold bg-gradient-to-r from-orange-500 via-indigo-700 to-orange-600 bg-clip-text text-transparent;
+    @apply font-bold bg-gradient-to-r from-blue-600 via-purple-600 to-orange-500 bg-clip-text text-transparent;
   }
   .myShadow{
     @apply shadow-[0_-3px_6px_rgba(0,0,0,0.08),0_3px_6px_rgba(0,0,0,0.08)];

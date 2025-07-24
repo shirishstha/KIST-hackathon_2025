@@ -1,11 +1,15 @@
 import { Button } from "@/components/ui/button"
 import { Code, MoveLeft, Palette, Settings } from "lucide-react"
+import { Helmet } from "react-helmet"
 import { useNavigate } from "react-router-dom"
 
 const Registration = () => {
   const navigate = useNavigate()
   return (
     <div>
+      <Helmet>
+        <title>KIST Hackfest | Registration</title>
+      </Helmet>
       <nav className="flex h-30">
         <img src="/mainlogo.png" alt="" className=" m-5 h-18" />
         <Button
@@ -24,7 +28,7 @@ const Registration = () => {
       </div>
       <div className="flex justify-between w-full py-25 px-5 lg:p-20 flex-wrap space-y-8 ">
         <div className="myShadow hover:shadow-2xl  group hover:scale-105 transition-all ease-in-out duration-300 rounded-lg p-5 space-y-3 flex flex-col items-center w-full lg:w-90">
-          <Code className=" bg-indigo-600 h-12 rounded-lg w-12 p-2 text-white" />
+          <Code className=" bg-blue-800/85 h-12 rounded-lg w-12 p-2 text-white" />
           <h1 className="text-xl font-bold text-black/80 group-hover:text-black">Code War</h1>
           <p className="text-gray-500 text-center pb-5 group-hover:text-black">
             Individual coding competition to test your programming skills
@@ -35,8 +39,8 @@ const Registration = () => {
             <p>• Multiple Programming Languages</p>
             <p>• Real-time Leaderboard</p>
           </div>
-          <Button className="shadow-none hover:scale-105 ease-in-out duration-200" onClick={() => navigate("/codewar")}>
-            Register for Codewar
+          <Button className="shadow-none hover:scale-105 ease-in-out duration-200 bg-gradient-to-r from-blue-800/85 via-blue-600 to-indigo-500" onClick={() => navigate("/codewar")}>
+            Register for Code War
           </Button>
         </div>
         <div className="myShadow hover:shadow-2xl  group hover:scale-105 transition-all ease-in-out duration-300 rounded-lg p-5 space-y-3 flex flex-col items-center w-full lg:w-90">
@@ -59,7 +63,7 @@ const Registration = () => {
           </Button>
         </div>
         <div className="myShadow hover:shadow-2xl  group hover:scale-105 transition-all ease-in-out duration-300 rounded-lg p-5 space-y-3 mb-[32px] flex flex-col items-center w-full lg:w-90">
-          <Palette className=" bg-indigo-600 h-12 rounded-lg w-12 p-2 text-white" />
+          <Palette className=" bg-blue-800/85 h-12 rounded-lg w-12 p-2 text-white" />
           <h1 className="text-xl font-bold text-black/80 group-hover:text-black">UI/UX</h1>
           <p className="text-gray-500 text-center pb-10 group-hover:text-black ">
             Showcase your creativity and design skills
@@ -70,7 +74,7 @@ const Registration = () => {
             <p>• Creative Freedom</p>
             <p>• Professional Judging</p>
           </div>
-          <Button className="shadow-none hover:scale-105 ease-in-out duration-200" onClick={() => navigate("/ui-ux")}>
+          <Button className="shadow-none hover:scale-105 ease-in-out duration-200 bg-gradient-to-r from-blue-800/85 via-blue-600 to-indigo-500" onClick={() => navigate("/ui-ux")}>
             Register for UI/UX
           </Button>
         </div>

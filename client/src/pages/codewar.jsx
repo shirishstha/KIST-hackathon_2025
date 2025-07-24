@@ -16,6 +16,7 @@ import {
 import toast from "react-hot-toast"
 import axios from "axios"
 import { Spinner } from "@/components/ui/spinner"
+import { Helmet } from "react-helmet"
 
 const Codewar = () => {
   const navigate = useNavigate()
@@ -70,6 +71,9 @@ const Codewar = () => {
   }
   return (
     <div>
+      <Helmet>
+        <title>KIST Hackfest | Codewar</title>
+      </Helmet>
       {loading && (
         <div className="fixed top-0 left-0 w-full h-full bg-black/20 backdrop-blur-sm z-[1000] flex items-center justify-center">
           <Spinner />
@@ -104,7 +108,7 @@ const Codewar = () => {
       </nav>
       <div className="">
         <div className="flex flex-col items-center space-y-5">
-          <Code className="h-18 w-18 bg-indigo-600 p-4 rounded-full text-gray-100" />
+          <Code className="h-18 w-18 bg-blue-800/85 p-4 rounded-full text-gray-100" />
           <h1 className=" text-3xl gradientEffect">Code War</h1>
           <p className="text-gray-500 font-medium">Individual Programming Competetion</p>
         </div>
@@ -218,28 +222,28 @@ const Codewar = () => {
               {/* notes */}
               <div className="mt-8 text-gray-500">
                 <h1 className="text-lg">Note:</h1>
-                <p>
-                  Enter valid contact and confirm the submission as all the information is circulate through contact
+                <p className="text-justify">
+                  Enter valid contact and confirm the submission as all the information is circulated through contact
                   only. One email is only liable for one registration. Choose your semester and faculty wisely . Lastly
                   id no is the id provided by the college.
                 </p>
               </div>
             </div>
-            <div className="w-80 p-5  md:w-100 lg:w-120 myShadow m-5 rounded-lg space-y-2">
+            <div className="w-80 p-7  md:w-100 lg:w-120 myShadow m-5 rounded-lg space-y-2">
               <h1 className="text-2xl font-medium gradientEffect ">About Code War</h1>
               <div className="grid gap-2 text-gray-500">
-                <p>
+                <p className="text-justify">
                   Code War is an intense individual programming competition designed to test your coding skills,
                   problem-solving abilities, and algorithmic thinking under time pressure.
                 </p>
-                <p>
+                <p className="text-justify">
                   Participants will face a series of challenging programming problems that require efficient solutions
                   and optimal code implementation. The competition supports multiple programming languages including
                   C++, Java, Python, and JavaScript.
                 </p>
                 <div className="grid grid-cols-2 gap-4 mt-6 text-muted-foreground">
                   <div className="text-center">
-                    <h4 className="text-indigo-600 font-semibold">Duration</h4>
+                    <h4 className="text-blue-800/85 font-semibold">Duration</h4>
                     <p>2 Hours</p>
                   </div>
                   <div className="text-center">
@@ -250,12 +254,12 @@ const Codewar = () => {
               </div>
             </div>
           </div>
-          <div className="max-w-[400px] p-5 w-80 md:w-100 lg:w-140 myShadow m-5 rounded-lg space-y-2">
+          <div className="max-w-[400px] p-7 w-80 md:w-100 lg:w-140 myShadow m-5 rounded-lg space-y-2">
             <div>
               <h1 className="text-2xl gradientEffect ">Rules & Regulations</h1>
             </div>
             <div className="text-gray-500">
-              <ol className="list-decimal pl-5 space-y-1 text-base leading-relaxed">
+              <ol className="list-decimal pl-5 space-y-1 text-base leading-relaxed text-justify">
                 <li>
                   <strong>Venue:</strong> Bachelor's computer lab
                 </li>

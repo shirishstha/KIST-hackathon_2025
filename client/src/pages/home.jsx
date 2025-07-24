@@ -3,6 +3,7 @@
 import { Button } from "@/components/ui/button"
 import { Calendar, Code, Palette, Settings, X } from "lucide-react"
 import { useEffect, useState } from "react"
+import { Helmet } from "react-helmet"
 import { useNavigate } from "react-router-dom"
 
 const HomePage = () => {
@@ -51,11 +52,14 @@ const HomePage = () => {
   }, [])
 
   return (
-    <div className="bg-white">
+    <div className=" z-0">
+      <Helmet>
+        <title>KIST Hackfest | Home</title>
+      </Helmet>
       {/* Hero Section */}
       <div className="min-h-screen w-full relative flex flex-col">
         {/* Background Dots */}
-        <div className="fixed inset-0 pointer-events-none z-0 overflow-hidden">
+        <div className="fixed inset-0 pointer-events-none z-10 overflow-hidden">
           <span className="dot bg-blue-400" style={{ top: "10%", left: "15%", width: "5px", height: "5px" }}></span>
           <span className="dot bg-blue-500" style={{ top: "40%", left: "70%", width: "2px", height: "2px" }}></span>
           <span className="dot bg-blue-300" style={{ top: "5%", left: "30%", width: "3px", height: "3px" }}></span>
@@ -71,23 +75,23 @@ const HomePage = () => {
         </div>
 
         {/* Navigation */}
-        <nav className="flex flex-col sm:flex-row items-center justify-between px-4 sm:px-6 py-4 z-10 relative space-y-3 sm:space-y-0">
+        <nav className="flex flex-col sm:flex-row items-center justify-between px-4 sm:px-6 py-4 z-10 relative space-y-3 sm:space-y-0 text-lg">
           <img src="/mainlogo.png" alt="logo" className="h-14 sm:h-16" />
 
           <div className="flex space-x-2">
-            <div className="shadow-[0_0_20px] shadow-blue-100 rounded p-1.5 bg-gradient-to-br from-white/20 to-white/10 w-12 text-center">
+            <div className="shadow-md rounded-lg p-1.5 bg-gradient-to-br from-white/20 to-white/10 w-15 aspect-square text-center">
               {timeLeft.days}
               <div className="text-[10px] text-gray-500">Days</div>
             </div>
-            <div className="shadow-[0_0_20px] shadow-blue-100 rounded p-1.5 bg-gradient-to-br from-white/20 to-white/10 w-12 text-center">
+            <div className="shadow-md rounded-lg p-1.5 bg-gradient-to-br from-white/20 to-white/10 w-15 aspect-square text-center">
               {timeLeft.hours}
               <div className="text-[10px] text-gray-500">Hours</div>
             </div>
-            <div className="shadow-[0_0_20px] shadow-blue-100 rounded p-1.5 bg-gradient-to-br from-white/20 to-white/10 w-12 text-center">
+            <div className="shadow-md rounded-lg p-1.5 bg-gradient-to-br from-white/20 to-white/10 w-15 aspect-square text-center">
               {timeLeft.minutes}
               <div className="text-[10px] text-gray-500">Mins</div>
             </div>
-            <div className="shadow-[0_0_20px] shadow-blue-100 rounded p-1.5 bg-gradient-to-br from-white/20 to-white/10 w-12 text-center">
+            <div className="shadow-md rounded-lg p-1.5 bg-gradient-to-br from-white/20 to-white/10 w-15 aspect-square text-center">
               {timeLeft.seconds}
               <div className="text-[10px] text-gray-500">Secs</div>
             </div>
@@ -116,9 +120,9 @@ const HomePage = () => {
                 <div className="bg-black/50 backdrop-blur-2xl rounded-3xl p-6 sm:p-8 md:p-12 border border-white/10 shadow-2xl">
                   <div className="text-center">
                     <h2 className="text-xl sm:text-2xl md:text-3xl font-bold text-white mb-2">
-                      Kist <span className="bg-gradient-to-br from-indigo-300 via-indigo-100 to-orange-400 text-clip text-transparent bg-clip-text">Hackfest</span> Starting Soon
+                      KIST <span className="bg-gradient-to-br from-blue- 800/85 via-blue-100 to-orange-400 text-clip text-transparent bg-clip-text">HACKFEST</span> 2025
                     </h2>
-                    <p className="text- mb-6 sm:mb-8 md:mb-10 text-gray-100">Get ready for something extraordinary</p>
+                    <p className="text- mb-6 sm:mb-8 md:mb-10 text-gray-100">Starts in:</p>
 
                     {/* Countdown display */}
                     <div className="grid grid-cols-4 gap-2 sm:gap-4 md:gap-8">
@@ -173,37 +177,37 @@ const HomePage = () => {
           </div>
         )}
         {/* Centered Content */}
-        <div className="flex-1 flex flex-col justify-center items-center px-4 text-center space-y-6 z-10 relative">
-          <h2 className="border border-orange-500 rounded-2xl px-4 py-2 hover:text-indigo-500 hover:border-gray-300 flex items-center">
+        <div className="flex-1 flex flex-col justify-center items-center px-4 text-center space-y-12 z-10 relative">
+          <h2 className="shadow-md  rounded-2xl px-4 py-2 hover:text-indigo-500 hover:border-gray-300 flex items-center">
             <Calendar className="text-blue-600 mr-2" size={18} />
             August 06-08, 2025
           </h2>
 
-          <h1 className="text-4xl sm:text-5xl font-medium leading-snug">
+          <h1 className="text-4xl sm:text-5xl font-bold leading-snug block">
             <span className="">KIST</span>
-            <span className="font-bold bg-gradient-to-r from-blue-400 via-orange-500 to-indigo-800 bg-clip-text text-transparent block">
+            <span className="font-bold bg-gradient-to-r from-blue-600 via-purple-600 to-orange-500 bg-clip-text text-transparent block">
               HACKFEST
             </span>
             <span className="block mt-1 text-2xl">2025</span>
           </h1>
 
-          <h3 className="typing-text text-base sm:text-lg">
-            Elevate your <span className="gradientEffect">creativity</span> with{" "}
-            <span className="gradientEffect">innovation.</span>
+          <h3 className="typing-text text-black sm:text-lg">
+            Elevate your <span className="gradientEffect">Creativity</span> with
+            <span className="gradientEffect"> Innovation.</span>
           </h3>
 
           {/* Stats */}
           <div className="flex flex-wrap justify-center gap-8 sm:gap-14 pt-8 font-bold">
             <div className="flex flex-col items-center">
-              <span className="text-3xl sm:text-4xl text-black/80">48</span>
+              <span className="text-3xl sm:text-4xl text-black/70">48</span>
               <span className="text-sm text-gray-600">Hours</span>
             </div>
             <div className="flex flex-col items-center">
-              <span className="text-3xl sm:text-4xl text-black/80">100+</span>
+              <span className="text-3xl sm:text-4xl text-black/70">100+</span>
               <span className="text-sm text-gray-600">Participants</span>
             </div>
             <div className="flex flex-col items-center">
-              <span className="text-3xl sm:text-4xl text-black/80">30+</span>
+              <span className="text-3xl sm:text-4xl text-black/70">30+</span>
               <span className="text-sm text-gray-600">Projects</span>
             </div>
           </div>
@@ -211,25 +215,25 @@ const HomePage = () => {
       </div>
 
       {/* "Are you ready?" Section */}
-      <div className="min-h-screen px-4 py-16 flex flex-col justify-center items-center space-y-10">
+      <div className="min-h-screen px-4 py-16 flex flex-col justify-center items-center space-y-10 ">
         <div className="text-center space-y-4 max-w-xl">
           <h1 className="text-4xl font-bold">Are you ready?</h1>
           <p className="text-gray-500">
-            Join this intra college hackathon event to test your creative skills that drive you towards your future
+            Join KIST Hackfest to test your creative skills that drive you towards your future
             innovation and objectives.
           </p>
           <Button onClick={() => navigate("/registration")}>Let's Go</Button>
         </div>
 
         {/* Event Descriptions */}
-        <div className="flex flex-wrap justify-center gap-10 pt-10">
+        <div className="flex flex-wrap justify-center gap-17 pt-10">
           <div
             className="myShadow hover:shadow-2xl rounded-lg p-6 max-w-xs space-y-2 cursor-pointer"
             onClick={() => navigate("/codewar")}
           >
             <Code className="bg-blue-500 h-8 w-8 p-2 rounded-lg text-white" />
             <h2 className="text-xl font-bold">Code War</h2>
-            <p className="text-gray-500">
+            <p className="text-gray-500 text-justify">
               Face off against the best coders in a series of mind-bending programming challenges designed to test your
               logic, problem-solving, and algorithmic skills. Whether you're a Python prodigy or a JavaScript ninja,
               this is your arena to prove your mettle.
@@ -242,10 +246,8 @@ const HomePage = () => {
           >
             <Settings className="bg-orange-500 h-8 w-8 p-2 rounded-lg text-white" />
             <h2 className="text-xl font-bold">Hackathon</h2>
-            <p className="text-gray-500">
-              Collaborate. Innovate. Dominate. The hackathon is your chance to turn ideas into reality, whether it's a
-              web app, mobile tool, or hardware integration. Solve real-world problems, pitch your solution, and make
-              your mark.
+            <p className="text-gray-500 text-justify">
+              Code. Create. Conquer. The hackathon is your playground to transform imagination into innovation—build stunning web solutions, smart mobile apps, or powerful hardware projects. Tackle real challenges, showcase your brilliance, and leave a legacy.
             </p>
           </div>
 
@@ -253,11 +255,10 @@ const HomePage = () => {
             className="myShadow hover:shadow-2xl rounded-lg p-6 max-w-xs space-y-2 cursor-pointer"
             onClick={() => navigate("/ui-ux")}
           >
-            <Palette className="bg-indigo-700 h-8 w-8 p-2 rounded-lg text-white" />
+            <Palette className="bg-blue-800/85 h-8 w-8 p-2 rounded-lg text-white" />
             <h2 className="text-xl font-bold">UI/UX</h2>
-            <p className="text-gray-500">
-              Unleash your artistic flair in our UI/UX showdown, where imagination meets digital canvas. Craft visually
-              stunning designs that tell stories, spark emotions, and leave a lasting impact.
+            <p className="text-gray-500 text-justify">
+              Empathize. Design. Elevate. The UI/UX competition is your stage to craft intuitive experiences—wireframes, prototypes, or full-fledged interfaces. Solve real user pain points, present your vision, and redefine how people interact with technology.
             </p>
           </div>
         </div>

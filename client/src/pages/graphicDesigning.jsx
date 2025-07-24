@@ -16,6 +16,7 @@ import {
 import toast from "react-hot-toast"
 import axios from "axios"
 import { Spinner } from "@/components/ui/spinner"
+import { Helmet } from "react-helmet"
 
 const GraphicDesigning = () => {
   const navigate = useNavigate()
@@ -69,6 +70,9 @@ const GraphicDesigning = () => {
   }
   return (
     <div>
+      <Helmet>
+        <title>KIST Hackfest | UI/UX</title>
+      </Helmet>
       {loading && (
         <div className="fixed top-0 left-0 w-full h-full bg-black/20 backdrop-blur-sm z-[1000] flex items-center justify-center">
           <Spinner />
@@ -217,18 +221,18 @@ const GraphicDesigning = () => {
               {/* notes */}
               <div className="mt-8 text-gray-500">
                 <h1 className="text-lg">Note:</h1>
-                <p>
-                  Enter valid contact and confirm the submission as all the information is circulate through contact
+                <p className="text-justify">
+                  Enter valid contact and confirm the submission as all the information is circulated through contact
                   only. One email is only liable for one registration. Choose your semester and faculty wisely .Lastly
                   id no is the id provided by the college.
                 </p>
               </div>
             </div>
 
-            <div className=" p-5 w-80 md:w-100 lg:w-120 myShadow m-5 rounded-lg space-y-2">
+            <div className=" p-7 w-80 md:w-100 lg:w-120 myShadow m-5 rounded-lg space-y-2">
               <h1 className="text-2xl font-medium gradientEffect ">About UI/UX</h1>
               <div className="grid gap-2 text-gray-500">
-                <p>
+                <p className="text-justify">
                   It is the art of visually communicating ideas that words alone can't express. It blends creativity,
                   color, layout, and typography to tell stories, evoke emotions, and deliver messages clearly and
                   beautifully. From branding to social media, a well-crafted design leaves a lasting impact.
@@ -236,8 +240,8 @@ const GraphicDesigning = () => {
 
                 <div className="grid grid-cols-2 gap-4 mt-6">
                   <div className="text-center">
-                    <h4 className="text-indigo-600 font-semibold">Duration</h4>
-                    <p>3 Hours</p>
+                    <h4 className="text-blue-800/85 font-semibold">Duration</h4>
+                    <p>6 Hours</p>
                   </div>
                   <div className="text-center">
                     <h4 className="text-orange-500 font-semibold">Participant</h4>
@@ -247,7 +251,7 @@ const GraphicDesigning = () => {
               </div>
             </div>
           </div>
-          <div className="max-w-[400px] p-5 w-80 md:w-100 lg:w-140 myShadow m-5 rounded-lg space-y-2">
+          <div className="max-w-[400px] p-7 w-80 md:w-100 lg:w-140 myShadow m-5 rounded-lg space-y-2 text-justify">
             <div>
               <h1 className="text-2xl gradientEffect ">Rules & Regulations</h1>
             </div>

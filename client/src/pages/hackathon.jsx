@@ -17,6 +17,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import toast from "react-hot-toast"
 import axios from "axios"
 import { Spinner } from "@/components/ui/spinner"
+import { Helmet } from "react-helmet"
 
 const Hackathon = () => {
   const navigate = useNavigate()
@@ -149,13 +150,16 @@ const Hackathon = () => {
   }
   return (
     <div>
+      <Helmet>
+        <title>KIST Hackfest | Hackathon</title>
+      </Helmet>
       {loading && (
         <div className="fixed top-0 left-0 w-full h-full bg-black/20 backdrop-blur-sm z-[1000] flex items-center justify-center">
           <Spinner />
         </div>
       )}
-      <div className="fixed inset-0 pointer-events-none z-50 overflow-hidden">
-        <div className="fixed inset-0 pointer-events-none z-50 overflow-hidden">
+      <div className="fixed inset-0 pointer-events-none z-0 overflow-hidden">
+        <div className="fixed inset-0 pointer-events-none z-0 overflow-hidden">
           <span className="dot bg-blue-400" style={{ top: "10%", left: "15%", width: "5px", height: "5px" }}></span>
           <span className="dot bg-blue-500" style={{ top: "40%", left: "70%", width: "2px", height: "2px" }}></span>
           <span className="dot bg-blue-300" style={{ top: "5%", left: "30%", width: "3px", height: "3px" }}></span>
@@ -193,10 +197,10 @@ const Hackathon = () => {
             <div className="myShadow p-5 lg:p-10 w-80 md:w-100 lg:w-120 px-5 space-y-5 rounded-lg m-5 ">
               <h1 className="text-2xl font-medium gradientEffect text-center">Registration Form</h1>
               <Tabs defaultValue="team" className="space-y-2 w-full">
-                <TabsList className="bg-gradient-to-r from-orange-500 via-indigo-500 to-orange-500 selected:bg-red-800 w-full ">
+                <TabsList className="bg-gray-100 w-full ">
                   <TabsTrigger
                     value="team"
-                    className="data-[state=active]:bg-white data-[state=active]:text-black "
+                    className="data-[state=active]:bg-white data-[state=active]:text-black  "
                   >
                     Team
                   </TabsTrigger>
@@ -278,7 +282,6 @@ const Hackathon = () => {
                         >
                           <DropdownMenuRadioItem value="BIM">BIM</DropdownMenuRadioItem>
                           <DropdownMenuRadioItem value="BIT">BIT</DropdownMenuRadioItem>
-                          <DropdownMenuRadioItem value="BBA">BBA</DropdownMenuRadioItem>
                           <DropdownMenuRadioItem value="BSC">BSC</DropdownMenuRadioItem>
                           <DropdownMenuRadioItem value="+2">+2</DropdownMenuRadioItem>
                         </DropdownMenuRadioGroup>
@@ -680,23 +683,23 @@ const Hackathon = () => {
               {/* notes */}
               <div className="mt-8 text-gray-500">
                 <h1 className="text-lg ">Things to remember:</h1>
-                <p>
+                <p className="text-justify">
                   Fill all the details of your team and members then only submit the registration. Also minimum of 2
                   members is required for registration.
                 </p>
                 <h1 className="text-lg pt-3">Note:</h1>
-                <p>
-                  Enter valid contact and confirm the submission as all the information is circulate through contact
+                <p className="text-justify">
+                  Enter valid contact and confirm the submission as all the information is circulated through contact
                   only. One email is only liable for one registration. Choose your semester and faculty wisely .Lastly
                   id no is the id provided by the college.
                 </p>
               </div>
             </div>
 
-            <div className=" p-5 w-80 md:w-100 lg:w-120 myShadow m-5 rounded-lg space-y-2">
+            <div className=" p-7 w-80 md:w-100 lg:w-120 myShadow m-5 rounded-lg space-y-2">
               <h1 className="text-2xl font-medium gradientEffect ">About Hackathon</h1>
               <div className="grid gap-2 text-gray-500">
-                <p>
+                <p className="text-justify">
                   A hackathon is a sprint-like event where developers, designers, and innovators come together to build
                   solutions under time pressure. It fosters creativity, collaboration, and rapid prototyping. Whether
                   solving real-world problems or showcasing technical skills, hackathons are where ideas become
@@ -704,7 +707,7 @@ const Hackathon = () => {
                 </p>
                 <div className="grid grid-cols-2 gap-4 mt-6">
                   <div className="text-center">
-                    <h4 className="text-indigo-600 font-semibold">Duration</h4>
+                    <h4 className="text-blue-800/85 font-semibold">Duration</h4>
                     <p>48 Hours</p>
                   </div>
                   <div className="text-center">
@@ -716,7 +719,7 @@ const Hackathon = () => {
             </div>
           </div>
 
-          <div className="max-w-[400px] p-5 w-80 md:w-100 lg:w-140 myShadow m-5 rounded-lg space-y-2">
+          <div className="max-w-[400px] p-7 w-80 md:w-100 lg:w-140 myShadow m-5 rounded-lg space-y-2 text-justify">
             <div>
               <h1 className="text-2xl gradientEffect ">Rules & Regulations</h1>
             </div>

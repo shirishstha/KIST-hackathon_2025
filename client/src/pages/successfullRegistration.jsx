@@ -3,6 +3,7 @@ import confetti from "canvas-confetti";
 import { Button } from '@/components/ui/button';
 import React from 'react'
 import { useNavigate } from 'react-router-dom'
+import { Helmet } from "react-helmet";
 
 export default function SuccessfullRegistration() {
   useEffect(() => {
@@ -19,6 +20,9 @@ export default function SuccessfullRegistration() {
 
   return (
       <div className=" mb-0 min-h-screen">
+        <Helmet>
+        <title>KIST Hackfest | Registration Success</title>
+      </Helmet>
             <div className="fixed inset-0 pointer-events-none z-50 overflow-hidden">
                 <div className="fixed inset-0 pointer-events-none z-50 overflow-hidden">
                     <span className="dot bg-green-400" style={{ top: '10%', left: '15%', width: '5px', height: '5px' }}></span>
