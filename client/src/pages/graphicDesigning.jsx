@@ -95,7 +95,7 @@ const GraphicDesigning = () => {
         </div>
       </div>
       <nav className="flex h-30">
-        <img src="/mainlogo.png" alt="" className=" m-5 h-18" />
+        <img src="/logo.png" alt="" className=" m-5 h-20" />
         <Button
           variant="ghost"
           className="hover:bg-transparent absolute right-2 top-10 lg:right-10"
@@ -106,7 +106,7 @@ const GraphicDesigning = () => {
       </nav>
       <div className="">
         <div className="flex flex-col items-center space-y-5">
-          <Palette className="h-18 w-18 bg-orange-500 p-4 rounded-full text-gray-100" />
+          <Palette className="h-18 w-18 bg-blue-800/85 p-4 rounded-full text-gray-100" />
           <h1 className=" text-3xl gradientEffect">UI/UX</h1>
           <p className="text-gray-500 font-medium">Design the Unspoken. Speak Through Visuals.</p>
         </div>

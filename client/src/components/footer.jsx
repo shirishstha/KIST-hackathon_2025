@@ -20,7 +20,7 @@ export default function Footer() {
           {/* College Information */}
           <div className="space-y-4">
             <Button className="text-xl font-bold cursor-pointer" variant="ghost" onClick={() => window.open("https://kist.edu.np/", "_blank")}>
-              <img src="/mainlogo.png"  alt="KIST College & SS" className="h-15"></img>
+              <img src="/kist_logo.png"  alt="KIST College & SS" className="h-15"></img>
             </Button>
             <div className="space-y-2 text-gray-600">
               <div className="flex items-start gap-2 md:justify-center">

@@ -76,7 +76,7 @@ const HomePage = () => {
 
         {/* Navigation */}
         <nav className="flex flex-col sm:flex-row items-center justify-between px-4 sm:px-6 py-4 z-10 relative space-y-3 sm:space-y-0 text-lg">
-          <img src="/mainlogo.png" alt="logo" className="h-14 sm:h-16" />
+          <img src="/logo.png" alt="logo" className="h-20 aspect-square sm:h-20" />
 
           <div className="flex space-x-2">
             <div className="shadow-md rounded-lg p-1.5 bg-gradient-to-br from-white/20 to-white/10 w-15 aspect-square text-center">
@@ -228,7 +228,7 @@ const HomePage = () => {
         {/* Event Descriptions */}
         <div className="flex flex-wrap justify-center gap-17 pt-10">
           <div
-            className="myShadow hover:shadow-2xl rounded-lg p-6 max-w-xs space-y-2 cursor-pointer"
+            className="shadow-md hover:shadow-lg rounded-lg p-6 max-w-xs space-y-2 cursor-pointer"
             onClick={() => navigate("/codewar")}
           >
             <Code className="bg-blue-500 h-8 w-8 p-2 rounded-lg text-white" />
@@ -241,7 +241,7 @@ const HomePage = () => {
           </div>
 
           <div
-            className="myShadow hover:shadow-2xl rounded-lg p-6 max-w-xs space-y-2 cursor-pointer"
+            className="shadow-md hover:shadow-lg rounded-lg p-6 max-w-xs space-y-2 cursor-pointer"
             onClick={() => navigate("/hackathon")}
           >
             <Settings className="bg-orange-500 h-8 w-8 p-2 rounded-lg text-white" />
@@ -252,7 +252,7 @@ const HomePage = () => {
           </div>
 
           <div
-            className="myShadow hover:shadow-2xl rounded-lg p-6 max-w-xs space-y-2 cursor-pointer"
+            className="shadow-md hover:shadow-lg rounded-lg p-6 max-w-xs space-y-2 cursor-pointer"
             onClick={() => navigate("/ui-ux")}
           >
             <Palette className="bg-blue-800/85 h-8 w-8 p-2 rounded-lg text-white" />

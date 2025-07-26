@@ -6,7 +6,10 @@ import { useNavigate } from 'react-router-dom'
 const PageNotFound = () => {
     const navigate = useNavigate();
   return (
-    <div className='flex justify-center pt-50 min-h-screen'>
+    <>
+    <img src="/logo.png" alt="logo" className=" m-5 h-20" />
+      <div className='flex justify-center pt-30 min-h-screen'>
+      
       <Helmet>
         <title>KIST Hackfest | Page Not Found</title>
       </Helmet>
@@ -17,6 +20,8 @@ const PageNotFound = () => {
             <Button onClick= {() => navigate('/')}>Go Home</Button>
         </div>
     </div>
+  
+    </>
   )
 }
 

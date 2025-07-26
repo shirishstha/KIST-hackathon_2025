@@ -97,7 +97,7 @@ const Codewar = () => {
         </div>
       </div>
       <nav className="flex h-30">
-        <img src="/mainlogo.png" alt="" className=" m-5 h-18" />
+        <img src="/logo.png" alt="" className=" m-5 h-20" />
         <Button
           variant="ghost"
           className="hover:bg-transparent  absolute right-2 top-10 lg:right-10"
