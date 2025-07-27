@@ -59,7 +59,7 @@ export default function Footer() {
             <div className="space-y-2 text-gray-600">
               <div className="md:text-center lg:text-center ">
                 <p className="font-semibold text-gray-800">KIST College & SS</p>
-                <p className="text-sm">BIM 6th & 7th Semester</p>
+                <p className="text-sm">BITM 6th & 7th Semester</p>
                 <p className="text-sm">BIT 4th Semester</p>
               </div>
             </div>

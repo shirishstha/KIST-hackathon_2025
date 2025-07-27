@@ -1,7 +1,7 @@
 import { Button } from "@/components/ui/button"
 import { Code, MoveLeft, Palette, Settings } from "lucide-react"
 import { Helmet } from "react-helmet"
-import { useNavigate } from "react-router-dom"
+import { Link, useNavigate } from "react-router-dom"
 
 const Registration = () => {
   const navigate = useNavigate()
@@ -11,7 +11,7 @@ const Registration = () => {
         <title>KIST Hackfest | Registration</title>
       </Helmet>
       <nav className="flex h-30">
-        <img src="/logo.png" alt="" className=" m-5 h-20" />
+          <Link to="/"> <img src="/logo.png" alt="" className=" m-5 h-20" /></Link>
         <Button
           variant="ghost"
           className="hover:bg-transparent hover:text-black absolute right-2 lg:right-10 top-10 hover:scale-101"

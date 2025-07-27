@@ -1,13 +1,13 @@
 import { Button } from '@/components/ui/button'
 import React from 'react'
 import { Helmet } from 'react-helmet';
-import { useNavigate } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 
 const PageNotFound = () => {
     const navigate = useNavigate();
   return (
     <>
-    <img src="/logo.png" alt="logo" className=" m-5 h-20" />
+      <Link to="/"> <img src="/logo.png" alt="" className=" m-5 h-20" /></Link>
       <div className='flex justify-center pt-30 min-h-screen'>
       
       <Helmet>

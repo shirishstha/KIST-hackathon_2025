@@ -5,7 +5,7 @@ import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { ChevronDown, MoveLeft, Settings } from "lucide-react"
 import { useState } from "react"
-import { useNavigate } from "react-router-dom"
+import { Link, useNavigate } from "react-router-dom"
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -158,24 +158,8 @@ const Hackathon = () => {
           <Spinner />
         </div>
       )}
-      <div className="fixed inset-0 pointer-events-none z-0 overflow-hidden">
-        <div className="fixed inset-0 pointer-events-none z-0 overflow-hidden">
-          <span className="dot bg-blue-400" style={{ top: "10%", left: "15%", width: "5px", height: "5px" }}></span>
-          <span className="dot bg-blue-500" style={{ top: "40%", left: "70%", width: "2px", height: "2px" }}></span>
-          <span className="dot bg-blue-300" style={{ top: "5%", left: "30%", width: "3px", height: "3px" }}></span>
-          <span className="dot bg-blue-600" style={{ top: "20%", left: "80%", width: "6px", height: "6px" }}></span>
-          <span className="dot bg-orange-400" style={{ top: "50%", left: "40%", width: "2px", height: "2px" }}></span>
-          <span className="dot bg-blue-500" style={{ top: "15%", left: "33%", width: "5px", height: "5px" }}></span>
-          <span className="dot bg-blue-400" style={{ top: "20%", left: "23%", width: "2px", height: "2px" }}></span>
-          <span className="dot bg-orange-500" style={{ top: "15%", left: "11%", width: "3px", height: "3px" }}></span>
-          <span className="dot bg-blue-400" style={{ top: "30%", left: "18%", width: "1px", height: "1px" }}></span>
-          <span className="dot bg-orange-500" style={{ top: "25%", left: "13%", width: "4px", height: "4px" }}></span>
-          <span className="dot bg-blue-400" style={{ top: "40%", left: "19%", width: "2px", height: "2px" }}></span>
-          <span className="dot bg-blue-500" style={{ top: "45%", left: "85%", width: "4px", height: "4px" }}></span>
-        </div>
-      </div>
       <nav className="flex h-30">
-        <img src="/logo.png" alt="" className=" m-5 h-20" />
+        <Link to="/"> <img src="/logo.png" alt="" className=" m-5 h-20" /></Link>
         <Button
           variant="ghost"
           className="hover:bg-transparent  absolute right-2 top-10 lg:right-10"
@@ -280,7 +264,7 @@ const Hackathon = () => {
                           value={team.faculty}
                           onValueChange={(value) => handleTeamChange("faculty", value)}
                         >
-                          <DropdownMenuRadioItem value="BIM">BIM</DropdownMenuRadioItem>
+                          <DropdownMenuRadioItem value="BITM">BITM</DropdownMenuRadioItem>
                           <DropdownMenuRadioItem value="BIT">BIT</DropdownMenuRadioItem>
                           <DropdownMenuRadioItem value="BSC">BSC</DropdownMenuRadioItem>
                           <DropdownMenuRadioItem value="+2">+2</DropdownMenuRadioItem>
@@ -340,7 +324,7 @@ const Hackathon = () => {
                           onValueChange={(value) => handleMemberChange("member1", "faculty", value)}
                           
                         >
-                          <DropdownMenuRadioItem value="BIM">BIM</DropdownMenuRadioItem>
+                          <DropdownMenuRadioItem value="BIM">BITM</DropdownMenuRadioItem>
                           <DropdownMenuRadioItem value="BIT">BIT</DropdownMenuRadioItem>
                           <DropdownMenuRadioItem value="BBA">BBA</DropdownMenuRadioItem>
                           <DropdownMenuRadioItem value="BSC">BSC</DropdownMenuRadioItem>
@@ -437,7 +421,7 @@ const Hackathon = () => {
                           onValueChange={(value) => handleMemberChange("member2", "faculty", value)}
                           
                         >
-                          <DropdownMenuRadioItem value="BIM">BIM</DropdownMenuRadioItem>
+                          <DropdownMenuRadioItem value="BITM">BITM</DropdownMenuRadioItem>
                           <DropdownMenuRadioItem value="BIT">BIT</DropdownMenuRadioItem>
                           <DropdownMenuRadioItem value="BBA">BBA</DropdownMenuRadioItem>
                           <DropdownMenuRadioItem value="BSC">BSC</DropdownMenuRadioItem>
@@ -534,7 +518,7 @@ const Hackathon = () => {
                           onValueChange={(value) => handleMemberChange("member3", "faculty", value)}
                           
                         >
-                          <DropdownMenuRadioItem value="BIM">BIM</DropdownMenuRadioItem>
+                          <DropdownMenuRadioItem value="BITM">BITM</DropdownMenuRadioItem>
                           <DropdownMenuRadioItem value="BIT">BIT</DropdownMenuRadioItem>
                           <DropdownMenuRadioItem value="BBA">BBA</DropdownMenuRadioItem>
                           <DropdownMenuRadioItem value="BSC">BSC</DropdownMenuRadioItem>
@@ -631,7 +615,7 @@ const Hackathon = () => {
                           onValueChange={(value) => handleMemberChange("member4", "faculty", value)}
                           
                         >
-                          <DropdownMenuRadioItem value="BIM">BIM</DropdownMenuRadioItem>
+                          <DropdownMenuRadioItem value="BITM">BITM</DropdownMenuRadioItem>
                           <DropdownMenuRadioItem value="BIT">BIT</DropdownMenuRadioItem>
                           <DropdownMenuRadioItem value="BBA">BBA</DropdownMenuRadioItem>
                           <DropdownMenuRadioItem value="BSC">BSC</DropdownMenuRadioItem>
@@ -724,7 +708,7 @@ const Hackathon = () => {
               <h1 className="text-2xl gradientEffect ">Rules & Regulations</h1>
             </div>
             <div className="text-gray-500">
-              <ol class="list-decimal pl-5 space-y-2">
+              <ol className="list-decimal pl-5 space-y-2">
                 <li>
                   <strong>Venue:</strong> KIST College
                 </li>

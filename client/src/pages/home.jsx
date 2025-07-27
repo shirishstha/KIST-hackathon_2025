@@ -4,7 +4,7 @@ import { Button } from "@/components/ui/button"
 import { Calendar, Code, Palette, Settings, X } from "lucide-react"
 import { useEffect, useState } from "react"
 import { Helmet } from "react-helmet"
-import { useNavigate } from "react-router-dom"
+import { Link, useNavigate } from "react-router-dom"
 
 const HomePage = () => {
   const navigate = useNavigate()
@@ -58,25 +58,11 @@ const HomePage = () => {
       </Helmet>
       {/* Hero Section */}
       <div className="min-h-screen w-full relative flex flex-col">
-        {/* Background Dots */}
-        <div className="fixed inset-0 pointer-events-none z-10 overflow-hidden">
-          <span className="dot bg-blue-400" style={{ top: "10%", left: "15%", width: "5px", height: "5px" }}></span>
-          <span className="dot bg-blue-500" style={{ top: "40%", left: "70%", width: "2px", height: "2px" }}></span>
-          <span className="dot bg-blue-300" style={{ top: "5%", left: "30%", width: "3px", height: "3px" }}></span>
-          <span className="dot bg-blue-600" style={{ top: "20%", left: "80%", width: "8px", height: "8px" }}></span>
-          <span className="dot bg-orange-400" style={{ top: "50%", left: "40%", width: "2px", height: "2px" }}></span>
-          <span className="dot bg-blue-500" style={{ top: "15%", left: "73%", width: "5px", height: "5px" }}></span>
-          <span className="dot bg-blue-400" style={{ top: "20%", left: "23%", width: "2px", height: "2px" }}></span>
-          <span className="dot bg-orange-500" style={{ top: "15%", left: "11%", width: "6px", height: "6px" }}></span>
-          <span className="dot bg-blue-400" style={{ top: "30%", left: "18%", width: "1px", height: "1px" }}></span>
-          <span className="dot bg-orange-500" style={{ top: "25%", left: "13%", width: "4px", height: "4px" }}></span>
-          <span className="dot bg-blue-400" style={{ top: "40%", left: "19%", width: "2px", height: "2px" }}></span>
-          <span className="dot bg-blue-500" style={{ top: "45%", left: "85%", width: "4px", height: "4px" }}></span>
-        </div>
+       
 
         {/* Navigation */}
         <nav className="flex flex-col sm:flex-row items-center justify-between px-4 sm:px-6 py-4 z-10 relative space-y-3 sm:space-y-0 text-lg">
-          <img src="/logo.png" alt="logo" className="h-20 aspect-square sm:h-20" />
+          <Link to="#"><img src="/logo.png" alt="logo" className="h-20 sm:h-20 mt-1" /></Link>
 
           <div className="flex space-x-2">
             <div className="shadow-md rounded-lg p-1.5 bg-gradient-to-br from-white/20 to-white/10 w-15 aspect-square text-center">
@@ -117,10 +103,10 @@ const HomePage = () => {
                 </Button>
 
                 {/* Modal content */}
-                <div className="bg-black/50 backdrop-blur-2xl rounded-3xl p-6 sm:p-8 md:p-12 border border-white/10 shadow-2xl">
+                <div className="bg-black/75 backdrop-blur-2xl backdrop-brightness-50 rounded-3xl p-6 sm:p-8 md:p-12 border border-white/10 shadow-2xl">
                   <div className="text-center">
                     <h2 className="text-xl sm:text-2xl md:text-3xl font-bold text-white mb-2">
-                      KIST <span className="bg-gradient-to-br from-blue- 800/85 via-blue-100 to-orange-400 text-clip text-transparent bg-clip-text">HACKFEST</span> 2025
+                      KIST <span className="bg-gradient-to-br from-blue-800/85 via-blue-500 to-orange-600 text-clip text-transparent bg-clip-text">HACKFEST</span> 2025
                     </h2>
                     <p className="text- mb-6 sm:mb-8 md:mb-10 text-gray-100">Starts in:</p>
 
@@ -184,7 +170,7 @@ const HomePage = () => {
           </h2>
 
           <h1 className="text-4xl sm:text-5xl font-bold leading-snug block">
-            <span className="">KIST</span>
+            <span className=" text-blue-800">KIST</span>
             <span className="font-bold bg-gradient-to-r from-blue-600 via-purple-600 to-orange-500 bg-clip-text text-transparent block">
               HACKFEST
             </span>
