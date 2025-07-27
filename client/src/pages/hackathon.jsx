@@ -324,7 +324,7 @@ const Hackathon = () => {
                           onValueChange={(value) => handleMemberChange("member1", "faculty", value)}
                           
                         >
-                          <DropdownMenuRadioItem value="BIM">BITM</DropdownMenuRadioItem>
+                          <DropdownMenuRadioItem value="BITM">BITM</DropdownMenuRadioItem>
                           <DropdownMenuRadioItem value="BIT">BIT</DropdownMenuRadioItem>
                           <DropdownMenuRadioItem value="BBA">BBA</DropdownMenuRadioItem>
                           <DropdownMenuRadioItem value="BSC">BSC</DropdownMenuRadioItem>
