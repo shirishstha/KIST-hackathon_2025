@@ -242,7 +242,7 @@ const HomePage = () => {
             onClick={() => navigate("/ui-ux")}
           >
             <Palette className="bg-blue-800/85 h-8 w-8 p-2 rounded-lg text-white" />
-            <h2 className="text-xl font-bold">UI/UX</h2>
+            <h2 className="text-xl font-bold">UI/UX Competition</h2>
             <p className="text-gray-500 text-justify">
               Empathize. Design. Elevate. The UI/UX competition is your stage to craft intuitive experiences—wireframes, prototypes, or full-fledged interfaces. Solve real user pain points, present your vision, and redefine how people interact with technology.
             </p>
