@@ -713,7 +713,7 @@ const Hackathon = () => {
                   <strong>Venue:</strong> KIST College
                 </li>
                 <li>
-                  <strong>Date:</strong> 6th August to 8th August 2025
+                  <strong>Date:</strong> 13th August to 15th August 2025
                 </li>
                 <li>
                   <strong>Time:</strong> 8:00 AM to 6:00 PM (everyday)
