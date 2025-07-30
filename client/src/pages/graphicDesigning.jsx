@@ -262,7 +262,7 @@ const GraphicDesigning = () => {
                 <li>Participants can use their own Figma account</li>
                 <li>Individual competition</li>
                 <li>
-                  <strong>Total Time:</strong> 6 hours
+                  <strong>Total Time:</strong> 3 hours
                 </li>
                 <li>
                   <strong>Theme:</strong> Will be released on the spot during the competition

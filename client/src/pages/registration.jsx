@@ -70,7 +70,7 @@ const Registration = () => {
           </p>
           <div className="space-y-2 mb-6  text-gray-500">
             <p>• Individual Competition</p>
-            <p>• 6 Hours Duration</p>
+            <p>• 3 Hours Duration</p>
             <p>• Creative Freedom</p>
             <p>• Professional Judging</p>
           </div>
