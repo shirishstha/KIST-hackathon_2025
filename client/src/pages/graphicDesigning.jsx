@@ -225,7 +225,7 @@ const GraphicDesigning = () => {
                 <div className="grid grid-cols-2 gap-4 mt-6">
                   <div className="text-center">
                     <h4 className="text-blue-800/85 font-semibold">Duration</h4>
-                    <p>6 Hours</p>
+                    <p>3 Hours</p>
                   </div>
                   <div className="text-center">
                     <h4 className="text-orange-500 font-semibold">Participant</h4>
