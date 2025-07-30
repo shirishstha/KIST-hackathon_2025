@@ -247,6 +247,12 @@ const GraphicDesigning = () => {
                 <li>
                   <strong>Date & Time:</strong> 13th August at 10 AM
                 </li>
+                   <li>
+                  <strong>Orientation Date:</strong> 10th August at 11 A.M
+                </li>
+                <li>
+                  <strong>Form Submission Deadline:</strong> 7th August 2025
+                </li>
                 <li>
                   <strong>Platform:</strong> Figma
                 </li>

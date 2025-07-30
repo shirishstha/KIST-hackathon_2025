@@ -718,6 +718,12 @@ const Hackathon = () => {
                 <li>
                   <strong>Time:</strong> 8:00 AM to 5:00 PM (everyday)
                 </li>
+                  <li>
+                  <strong>Orientation Date:</strong> 10th August at 11 A.M
+                </li>
+                <li>
+                  <strong>Form Submission Deadline:</strong> 7th August 2025
+                </li>
                 <li>Team size: Minimum 2 and maximum 4 members.</li>
                 <li>Participants should not be organizers, volunteers, judges, or sponsors.</li>
                 <li>At least 2 members must be present at the team's allocated stall at all times.</li>

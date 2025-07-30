@@ -253,6 +253,12 @@ const Codewar = () => {
                   <strong>Date & Time:</strong> 14th August at 9 A.M
                 </li>
                 <li>
+                  <strong>Orientation Date:</strong> 10th August at 11 A.M
+                </li>
+                <li>
+                  <strong>Form Submission Deadline:</strong> 7th August 2025
+                </li>
+                <li>
                   <strong>Platform:</strong> HackerRank
                 </li>
                 <li>Participants can use their own HackerRank account</li>
