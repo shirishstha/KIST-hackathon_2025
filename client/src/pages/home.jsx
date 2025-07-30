@@ -14,7 +14,7 @@ const HomePage = () => {
     minutes: 0,
     seconds: 0,
   })
-  const eventDate = new Date("2025-08-13T08:00:00").getTime()
+  const eventDate = new Date("2025-08-12T08:00:00").getTime()
   const [isOpen, setIsOpen] = useState(true)
   const [isLoading, setIsLoading] = useState(true)
 
@@ -166,7 +166,7 @@ const HomePage = () => {
         <div className="flex-1 flex flex-col justify-center items-center px-4 text-center space-y-12 z-10 relative">
           <h2 className="shadow-md  rounded-2xl px-4 py-2 hover:text-indigo-500 hover:border-gray-300 flex items-center">
             <Calendar className="text-blue-600 mr-2" size={18} />
-            August 13-15, 2025
+            August 12-14, 2025
           </h2>
 
           <h1 className="text-4xl sm:text-5xl font-bold leading-snug block">

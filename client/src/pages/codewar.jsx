@@ -250,7 +250,7 @@ const Codewar = () => {
                   <strong>Venue:</strong> Bachelor's computer lab
                 </li>
                 <li>
-                  <strong>Date & Time:</strong> 15th August at 9 A.M
+                  <strong>Date & Time:</strong> 14th August at 9 A.M
                 </li>
                 <li>
                   <strong>Platform:</strong> HackerRank

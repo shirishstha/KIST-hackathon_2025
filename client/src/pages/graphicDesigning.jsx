@@ -245,7 +245,7 @@ const GraphicDesigning = () => {
                   <strong>Venue:</strong> Bachelor's computer lab
                 </li>
                 <li>
-                  <strong>Date & Time:</strong> 14th August at 10 AM
+                  <strong>Date & Time:</strong> 13th August at 10 AM
                 </li>
                 <li>
                   <strong>Platform:</strong> Figma

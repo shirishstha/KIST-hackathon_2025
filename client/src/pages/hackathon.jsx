@@ -713,10 +713,10 @@ const Hackathon = () => {
                   <strong>Venue:</strong> KIST College
                 </li>
                 <li>
-                  <strong>Date:</strong> 13th August to 15th August 2025
+                  <strong>Date:</strong> 12th August to 14th August 2025
                 </li>
                 <li>
-                  <strong>Time:</strong> 8:00 AM to 6:00 PM (everyday)
+                  <strong>Time:</strong> 8:00 AM to 5:00 PM (everyday)
                 </li>
                 <li>Team size: Minimum 2 and maximum 4 members.</li>
                 <li>Participants should not be organizers, volunteers, judges, or sponsors.</li>
