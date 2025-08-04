@@ -21,17 +21,22 @@ import { useLocation } from "react-router-dom";
 function App() {
   const location = useLocation();
   const isAdminRoute = location.pathname.startsWith("/admin");
+  //event date here.
+  const eventDate = new Date("2025-08-12T08:00:00").getTime();
+  //form deadline here .
+  const formDeadline = new Date("2025-08-08T00:00:00").getTime();
+  
   return (
     <>
       <Toaster/>
       <MouseFollower />
       <ScrollToTop />
       <Routes>
-        <Route path="/" element={<HomePage />} />
+        <Route path="/" element={<HomePage eventDate={eventDate} />} />
         <Route path="/registration" element={<Registration />} />
-        <Route path="/codewar" element={<Codewar />} />
-        <Route path="/hackathon" element={<Hackathon />} />
-        <Route path="/ui-ux" element={<GraphicDesigning />} />
+        <Route path="/codewar" element={<Codewar formDeadline={formDeadline}/>} />
+        <Route path="/hackathon" element={<Hackathon formDeadline={formDeadline} />} />
+        <Route path="/ui-ux" element={<GraphicDesigning formDeadline={formDeadline} />} />
         <Route path="/successfull_registration" element={<SuccessfullRegistration />} />
         <Route path="/login" element={<Login/>}/>
 

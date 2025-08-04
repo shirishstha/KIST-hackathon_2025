@@ -6,7 +6,7 @@ import { useEffect, useState } from "react"
 import { Helmet } from "react-helmet"
 import { Link, useNavigate } from "react-router-dom"
 
-const HomePage = () => {
+const HomePage = (props) => {
   const navigate = useNavigate()
   const [timeLeft, setTimeLeft] = useState({
     days: 0,
@@ -14,7 +14,8 @@ const HomePage = () => {
     minutes: 0,
     seconds: 0,
   })
-  const eventDate = new Date("2025-08-12T08:00:00").getTime()
+  
+  const eventDate = props.eventDate;
   const [isOpen, setIsOpen] = useState(true)
   const [isLoading, setIsLoading] = useState(true)
 
@@ -174,7 +175,7 @@ const HomePage = () => {
             <span className="font-bold bg-gradient-to-r from-blue-600 via-purple-600 to-orange-500 bg-clip-text text-transparent block">
               HACKFEST
             </span>
-            <span className="block mt-1 text-2xl">2025</span>
+            <span className="block mt-1 text-2xl">{new Date().getFullYear()}</span>
           </h1>
 
           <h3 className="typing-text text-black sm:text-lg">
