@@ -24,7 +24,7 @@ function App() {
   //event date here.
   const eventDate = new Date("2025-08-12T08:00:00").getTime();
   //form deadline here .
-  const formDeadline = new Date("2025-08-08T00:00:00").getTime();
+  const formDeadline = new Date("2025-08-07T12:00:00").getTime();
   
   return (
     <>
